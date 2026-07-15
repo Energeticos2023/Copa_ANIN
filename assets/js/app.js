@@ -7,9 +7,12 @@
   const playersList = $("#players-list");
   const template = $("#player-template");
   const modal = $("#success-modal");
-  const endpoint = window.ANIN_CONFIG?.REGISTRATION_ENDPOINT?.trim() || "";
+  const config = window.ANIN_CONFIG || {};
+  const endpoint = String(config.REGISTRATION_ENDPOINT || "").trim();
+  const whatsappNumber = String(config.WHATSAPP_NUMBER || "51942899919").replace(/\D/g, "");
   const MIN_PLAYERS = 6;
   const MAX_PLAYERS = 15;
+  const REQUEST_TIMEOUT_MS = 30000;
 
   const pad = (value) => String(value).padStart(2, "0");
 
@@ -70,6 +73,12 @@
     if (error) error.textContent = message;
   }
 
+  function showFormMessage(message) {
+    const node = $("#form-message");
+    node.textContent = message;
+    node.classList.add("show");
+  }
+
   function validateForm() {
     let valid = true;
     $$("input, select", form).forEach(clearFieldError);
@@ -83,7 +92,10 @@
       [form.elements.email, (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()), "Ingresa un correo válido."]
     ];
     rules.forEach(([input, test, message]) => {
-      if (!test(input.value)) { showFieldError(input, message); valid = false; }
+      if (!test(input.value)) {
+        showFieldError(input, message);
+        valid = false;
+      }
     });
 
     const players = $$(".player-row", playersList);
@@ -92,11 +104,21 @@
       const name = $("[data-field='name']", row);
       const dni = $("[data-field='dni']", row);
       const gender = $("[data-field='gender']", row);
-      if (name.value.trim().split(/\s+/).length < 2) { showFieldError(name, "Completa nombre y apellido."); valid = false; }
-      if (!/^\d{8}$/.test(dni.value.trim())) { showFieldError(dni, "Debe tener 8 dígitos."); valid = false; }
-      if (!gender.value) { showFieldError(gender, "Selecciona una opción."); valid = false; }
+      if (name.value.trim().split(/\s+/).length < 2) {
+        showFieldError(name, "Completa nombre y apellido.");
+        valid = false;
+      }
+      if (!/^\d{8}$/.test(dni.value.trim())) {
+        showFieldError(dni, "Debe tener 8 dígitos.");
+        valid = false;
+      }
+      if (!gender.value) {
+        showFieldError(gender, "Selecciona una opción.");
+        valid = false;
+      }
       dnis.push(dni.value.trim());
     });
+
     dnis.forEach((dni, index) => {
       if (dni && dnis.indexOf(dni) !== index) {
         showFieldError($("[data-field='dni']", players[index]), "Este DNI está repetido.");
@@ -104,32 +126,39 @@
       }
     });
 
-    const selectedSport = form.elements.sport.value;
-    if (selectedSport === "Vóley mixto") {
+    if (form.elements.sport.value === "Vóley mixto") {
       const genders = players.map((row) => $("[data-field='gender']", row).value);
       if (!genders.includes("Femenino") || !genders.includes("Masculino")) {
-        const message = $("#form-message");
-        message.textContent = "Para vóley mixto, registra participantes femeninos y masculinos.";
-        message.classList.add("show");
+        showFormMessage("Para vóley mixto, registra participantes femeninos y masculinos.");
         valid = false;
       }
     }
 
     if (!form.elements.consent.checked) {
-      const message = $("#form-message");
-      message.textContent = "Debes aceptar las bases y confirmar la veracidad de los datos.";
-      message.classList.add("show");
+      showFormMessage("Debes aceptar las bases y confirmar la veracidad de los datos.");
       valid = false;
     }
+
+    if (!endpoint) {
+      showFormMessage("El registro central todavía no está habilitado. Comunícate con la organización antes de volver a intentarlo.");
+      valid = false;
+    }
+
     if (!valid) form.querySelector(".invalid")?.focus();
     return valid;
   }
 
-  function getPayload(code) {
+  function createRequestId() {
+    if (window.crypto?.randomUUID) return window.crypto.randomUUID();
+    return `req-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+  }
+
+  function getPayload() {
     return {
-      code,
-      submittedAt: new Date().toISOString(),
+      requestId: createRequestId(),
+      submittedAtClient: new Date().toISOString(),
       event: "Copa ANIN 2026",
+      source: window.location.href,
       sport: form.elements.sport.value,
       teamName: form.elements.teamName.value.trim(),
       organization: form.elements.organization.value.trim(),
@@ -147,38 +176,105 @@
     };
   }
 
-  function saveLocally(payload) {
-    const key = "anin_championship_registrations";
-    const records = JSON.parse(localStorage.getItem(key) || "[]");
-    records.push(payload);
-    localStorage.setItem(key, JSON.stringify(records));
-  }
-
-  async function submitRegistration(payload) {
-    if (!endpoint) {
-      saveLocally(payload);
-      return;
+  function ensureTransportFrame() {
+    let frame = $("#registration-transport-frame");
+    if (!frame) {
+      frame = document.createElement("iframe");
+      frame.id = "registration-transport-frame";
+      frame.name = "registration-transport-frame";
+      frame.hidden = true;
+      frame.setAttribute("aria-hidden", "true");
+      document.body.append(frame);
     }
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
+    return frame;
+  }
+
+  function submitRegistration(payload) {
+    return new Promise((resolve, reject) => {
+      ensureTransportFrame();
+      const transportForm = document.createElement("form");
+      transportForm.method = "POST";
+      transportForm.action = endpoint;
+      transportForm.target = "registration-transport-frame";
+      transportForm.hidden = true;
+
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "payload";
+      input.value = JSON.stringify(payload);
+      transportForm.append(input);
+      document.body.append(transportForm);
+
+      let settled = false;
+      const cleanup = () => {
+        window.removeEventListener("message", onMessage);
+        transportForm.remove();
+        clearTimeout(timer);
+      };
+
+      const finish = (callback, value) => {
+        if (settled) return;
+        settled = true;
+        cleanup();
+        callback(value);
+      };
+
+      const onMessage = (event) => {
+        const data = event.data;
+        if (!data || data.source !== "COPA_ANIN_API" || data.requestId !== payload.requestId) return;
+        if (data.ok) finish(resolve, data);
+        else finish(reject, new Error(data.error || "El servidor rechazó la inscripción."));
+      };
+
+      window.addEventListener("message", onMessage);
+      const timer = window.setTimeout(() => {
+        finish(reject, new Error("El servidor no confirmó la inscripción dentro del tiempo esperado."));
+      }, REQUEST_TIMEOUT_MS);
+
+      transportForm.submit();
     });
-    if (!response.ok) throw new Error("No se pudo completar el registro remoto.");
   }
 
-  function generateCode() {
-    const time = Date.now().toString(36).slice(-4).toUpperCase();
-    const random = Math.random().toString(36).slice(2, 5).toUpperCase();
-    return `ANIN-${time}${random}`;
+  function buildWhatsAppMessage(payload, code) {
+    const players = payload.players.map((player, index) =>
+      `${index + 1}. ${player.name} | DNI ${player.dni} | ${player.gender}`
+    ).join("\n");
+
+    return [
+      "*COPA ANIN 2026 – INSCRIPCIÓN CONFIRMADA*",
+      "",
+      `*Código:* ${code}`,
+      `*Disciplina:* ${payload.sport}`,
+      `*Equipo:* ${payload.teamName}`,
+      `*Área / institución:* ${payload.organization || "No indicada"}`,
+      `*Color de camiseta:* ${payload.jersey}`,
+      "",
+      "*Delegado:*",
+      payload.delegate.name,
+      `Celular: ${payload.delegate.phone}`,
+      `Correo: ${payload.delegate.email}`,
+      "",
+      `*Jugadores (${payload.players.length}):*`,
+      players,
+      "",
+      "Registro guardado en la base central de la Copa ANIN 2026."
+    ].join("\n");
   }
 
-  function openModal(code) {
+  function configureWhatsAppButton(payload, code) {
+    const message = buildWhatsAppMessage(payload, code);
+    const button = $("#whatsapp-confirmation");
+    button.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    button.hidden = !whatsappNumber;
+  }
+
+  function openModal(payload, code) {
     $("#registration-code").textContent = code;
+    configureWhatsAppButton(payload, code);
     modal.classList.add("open");
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
-    $(".modal-close", modal).focus();
+    $("#whatsapp-confirmation", modal).focus();
   }
 
   function closeModal() {
@@ -196,19 +292,19 @@
   async function handleSubmit(event) {
     event.preventDefault();
     if (!validateForm()) return;
+
     const button = $(".submit-button", form);
     const original = button.innerHTML;
+    const payload = getPayload();
     button.disabled = true;
-    button.innerHTML = "<span>REGISTRANDO EQUIPO…</span><i>•••</i>";
-    const code = generateCode();
+    button.innerHTML = "<span>GUARDANDO EN EL REGISTRO CENTRAL…</span><i>•••</i>";
+
     try {
-      await submitRegistration(getPayload(code));
-      openModal(code);
+      const result = await submitRegistration(payload);
+      openModal(payload, result.code);
       resetForm();
     } catch (error) {
-      const message = $("#form-message");
-      message.textContent = "No pudimos registrar el equipo. Revisa tu conexión e inténtalo nuevamente.";
-      message.classList.add("show");
+      showFormMessage(error.message || "No pudimos registrar el equipo. Revisa tu conexión e inténtalo nuevamente.");
       console.error(error);
     } finally {
       button.disabled = false;
@@ -224,7 +320,9 @@
     updatePlayerRows();
   });
   playersList.addEventListener("input", (event) => {
-    if (event.target.matches("[data-field='dni']")) event.target.value = event.target.value.replace(/\D/g, "").slice(0, 8);
+    if (event.target.matches("[data-field='dni']")) {
+      event.target.value = event.target.value.replace(/\D/g, "").slice(0, 8);
+    }
     clearFieldError(event.target);
   });
   form.addEventListener("input", (event) => clearFieldError(event.target));

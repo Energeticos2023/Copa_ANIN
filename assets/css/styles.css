@@ -15,3 +15,32 @@ footer{background:#050f20;color:#fff;padding:55px 0 20px}.footer-grid{display:gr
 /* Player roster fields */
 .field select{display:block;width:100%;height:47px;border:1px solid #d9e0e8;background:#fff;padding:0 9px;color:var(--ink);outline:none;font-size:.7rem;transition:.2s}.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(23,55,94,.08)}.field select.invalid{border-color:var(--red);background:#fffafa}.player-row{grid-template-columns:32px minmax(170px,1fr) 115px 105px 28px}.player-row .field select{height:41px}.gender-field{min-width:0}
 @media (max-width:760px){.player-row{grid-template-columns:25px 1fr 28px}.player-row .dni-field,.player-row .gender-field{grid-column:2}.remove-player{grid-column:3;grid-row:1}}
+
+/* Registro central y WhatsApp */
+.central-note {
+  margin: 12px 0 0;
+  color: rgba(255,255,255,.68);
+  font-size: .78rem;
+  line-height: 1.5;
+  text-align: center;
+}
+.whatsapp-button {
+  display: flex;
+  width: 100%;
+  margin-top: 18px;
+  justify-content: center;
+  gap: 10px;
+  background: #128c4b;
+  color: #fff;
+  border: 0;
+  text-decoration: none;
+}
+.whatsapp-button:hover,
+.whatsapp-button:focus-visible {
+  background: #0d743d;
+  color: #fff;
+}
+.modal-card .modal-done {
+  width: 100%;
+  margin-top: 10px;
+}

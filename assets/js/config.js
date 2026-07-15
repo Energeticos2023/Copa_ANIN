@@ -1,5 +1,8 @@
 window.ANIN_CONFIG = {
-  // Pegue aquí la URL pública de Google Apps Script, Supabase Edge Function u otro webhook.
-  // Déjelo vacío para usar el modo local de demostración.
-  REGISTRATION_ENDPOINT: ""
+  // URL del Web App de Google Apps Script, terminada en /exec.
+  // La aplicación bloqueará nuevas inscripciones mientras este campo esté vacío.
+  REGISTRATION_ENDPOINT: "",
+
+  // WhatsApp oficial que recibirá la copia de cada inscripción.
+  WHATSAPP_NUMBER: "51942899919"
 };
