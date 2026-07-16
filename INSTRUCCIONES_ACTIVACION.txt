@@ -1,44 +1,22 @@
-# Copa ANIN 2026 — versión con registro central
+COPA ANIN 2026 – ACTIVACIÓN DE INSCRIPCIONES
 
-Esta versión elimina el almacenamiento local como mecanismo de inscripción.
+MODO ACTUAL: WHATSAPP OFICIAL
+1. La aplicación funciona aunque REGISTRATION_ENDPOINT esté vacío.
+2. Después de validar el formulario, prepara un mensaje completo dirigido al WhatsApp +51 942 899 919.
+3. El participante debe tocar “ENVIAR AL WHATSAPP 942 899 919” y luego presionar Enviar en WhatsApp.
+4. La inscripción se considera recibida cuando el mensaje llega al WhatsApp de la organización.
+5. La pantalla no afirma que el registro central esté confirmado mientras el endpoint esté vacío.
 
-## Funcionamiento
+MODO REGISTRO CENTRAL + WHATSAPP (OPCIONAL)
+1. Abra la hoja de Google Sheets destinada a la Copa ANIN.
+2. Abra Extensiones > Apps Script.
+3. Copie google-apps-script/Code.gs y appsscript.json.
+4. Implemente como aplicación web con acceso para cualquier usuario.
+5. Copie la URL terminada en /exec.
+6. Péguela en assets/js/config.js, en REGISTRATION_ENDPOINT.
+7. Publique nuevamente todos los archivos en GitHub Pages.
 
-1. El formulario valida los datos del equipo y de los jugadores.
-2. Envía la inscripción al Web App de Google Apps Script.
-3. Google Apps Script guarda los datos en la hoja central de Google Sheets.
-4. El servidor genera el código único de inscripción.
-5. Solo después de la confirmación del servidor aparece el mensaje de éxito.
-6. Se habilita un botón para enviar la constancia al WhatsApp oficial **942 899 919**.
-
-## Base central creada
-
-- Archivo: `Copa ANIN 2026 - Registro Central de Inscripciones`
-- Spreadsheet ID: `1lTq5VmKSRM9qM5Uu9luJ4-f6FSZM7J5i1gME83LeNDg`
-- Hojas: `Inscripciones` y `Jugadores`
-
-## Activación del backend
-
-1. Abra `https://script.google.com` con la misma cuenta propietaria de la hoja.
-2. Cree un proyecto nuevo llamado `Copa ANIN 2026 - Backend`.
-3. Reemplace el contenido de `Code.gs` por el archivo `google-apps-script/Code.gs` incluido en este proyecto.
-4. En **Configuración del proyecto**, active la visualización del archivo de manifiesto y copie también `google-apps-script/appsscript.json`.
-5. Pulse **Implementar > Nueva implementación**.
-6. Seleccione **Aplicación web**.
-7. Ejecutar como: **Yo**.
-8. Quién tiene acceso: **Cualquier usuario**.
-9. Autorice el acceso y copie la URL terminada en `/exec`.
-10. Abra `assets/js/config.js` y pegue esa URL en `REGISTRATION_ENDPOINT`.
-11. Suba todos los archivos actualizados al repositorio GitHub `Copa_ANIN`.
-
-## Prueba obligatoria
-
-Antes de difundir la aplicación:
-
-1. Registre un equipo de prueba.
-2. Verifique que aparezca una fila en `Inscripciones`.
-3. Verifique que todos los jugadores aparezcan en `Jugadores`.
-4. Confirme que el código mostrado coincida con el código guardado.
-5. Pulse el botón de WhatsApp y envíe la constancia al 942 899 919.
-
-La aplicación bloqueará el envío mientras `REGISTRATION_ENDPOINT` esté vacío, evitando nuevas confirmaciones falsas.
+IMPORTANTE
+- El número configurado es 51942899919.
+- WhatsApp exige que el participante presione Enviar; una página web no puede enviar el mensaje automáticamente.
+- Los archivos JavaScript incluyen un identificador de versión para evitar que el teléfono siga usando una copia antigua en caché.

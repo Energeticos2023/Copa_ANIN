@@ -10,6 +10,12 @@
   const config = window.ANIN_CONFIG || {};
   const endpoint = String(config.REGISTRATION_ENDPOINT || "").trim();
   const whatsappNumber = String(config.WHATSAPP_NUMBER || "51942899919").replace(/\D/g, "");
+  const eventStartIso = String(config.EVENT_START_ISO || "2026-07-17T20:00:00-05:00");
+  const eventDateLabel = String(config.EVENT_DATE_LABEL || "Viernes 17 de julio de 2026");
+  const eventTimeLabel = String(config.EVENT_TIME_LABEL || "8:00 p. m. a 10:00 p. m.");
+  const venueLabel = String(config.VENUE_LABEL || "Cancha deportiva Balón Fuego");
+  const venueNote = String(config.VENUE_NOTE || "Nueva sede: ya no es frente a Makro.");
+  const mapsUrl = String(config.MAPS_URL || "https://maps.app.goo.gl/oDiJbjf8zxkYyega8");
   const MIN_PLAYERS = 6;
   const MAX_PLAYERS = 15;
   const REQUEST_TIMEOUT_MS = 30000;
@@ -18,7 +24,7 @@
 
   function updateCountdown() {
     const node = $("#countdown");
-    const eventDate = new Date("2026-07-17T19:00:00-05:00");
+    const eventDate = new Date(eventStartIso);
     const distance = Math.max(0, eventDate.getTime() - Date.now());
     const days = Math.floor(distance / 86400000);
     const hours = Math.floor((distance % 86400000) / 3600000);
@@ -139,11 +145,6 @@
       valid = false;
     }
 
-    if (!endpoint) {
-      showFormMessage("El registro central todavía no está habilitado. Comunícate con la organización antes de volver a intentarlo.");
-      valid = false;
-    }
-
     if (!valid) form.querySelector(".invalid")?.focus();
     return valid;
   }
@@ -158,6 +159,13 @@
       requestId: createRequestId(),
       submittedAtClient: new Date().toISOString(),
       event: "Copa ANIN 2026",
+      eventDetails: {
+        date: eventDateLabel,
+        time: eventTimeLabel,
+        venue: venueLabel,
+        mapsUrl,
+        note: venueNote
+      },
       source: window.location.href,
       sport: form.elements.sport.value,
       teamName: form.elements.teamName.value.trim(),
@@ -235,15 +243,31 @@
     });
   }
 
-  function buildWhatsAppMessage(payload, code) {
+  function createReferenceCode() {
+    const timePart = Date.now().toString(36).toUpperCase().slice(-6);
+    const randomPart = Math.random().toString(36).toUpperCase().replace(/[^A-Z0-9]/g, "").slice(2, 5);
+    return `ANIN-${timePart}${randomPart}`;
+  }
+
+  function buildWhatsAppMessage(payload, code, centralConfirmed) {
     const players = payload.players.map((player, index) =>
       `${index + 1}. ${player.name} | DNI ${player.dni} | ${player.gender}`
     ).join("\n");
 
     return [
-      "*COPA ANIN 2026 – INSCRIPCIÓN CONFIRMADA*",
+      centralConfirmed
+        ? "*COPA ANIN 2026 – INSCRIPCIÓN CONFIRMADA*"
+        : "*COPA ANIN 2026 – SOLICITUD DE INSCRIPCIÓN*",
       "",
       `*Código:* ${code}`,
+      "",
+      "*DATOS DEL EVENTO*",
+      `*Fecha:* ${eventDateLabel}`,
+      `*Horario:* ${eventTimeLabel}`,
+      `*Cancha:* ${venueLabel}`,
+      `*Ubicación:* ${mapsUrl}`,
+      `*Importante:* ${venueNote}`,
+      "",
       `*Disciplina:* ${payload.sport}`,
       `*Equipo:* ${payload.teamName}`,
       `*Área / institución:* ${payload.organization || "No indicada"}`,
@@ -257,20 +281,45 @@
       `*Jugadores (${payload.players.length}):*`,
       players,
       "",
-      "Registro guardado en la base central de la Copa ANIN 2026."
+      centralConfirmed
+        ? "Registro guardado en la base central de la Copa ANIN 2026."
+        : "Solicito confirmar la recepción de esta inscripción por este mismo medio."
     ].join("\n");
   }
 
-  function configureWhatsAppButton(payload, code) {
-    const message = buildWhatsAppMessage(payload, code);
-    const button = $("#whatsapp-confirmation");
-    button.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-    button.hidden = !whatsappNumber;
+  function getWhatsAppUrl(payload, code, centralConfirmed) {
+    const message = buildWhatsAppMessage(payload, code, centralConfirmed);
+    return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
   }
 
-  function openModal(payload, code) {
+  function configureWhatsAppButton(payload, code, centralConfirmed) {
+    const url = getWhatsAppUrl(payload, code, centralConfirmed);
+    const button = $("#whatsapp-confirmation");
+    button.href = url;
+    button.hidden = !whatsappNumber;
+    return url;
+  }
+
+  function openModal(payload, code, centralConfirmed, serverError = "") {
     $("#registration-code").textContent = code;
-    configureWhatsAppButton(payload, code);
+    configureWhatsAppButton(payload, code, centralConfirmed);
+
+    const status = $("#modal-status");
+    const title = $("#modal-title");
+    const description = $("#modal-description");
+
+    if (centralConfirmed) {
+      status.textContent = "REGISTRO CENTRAL CONFIRMADO";
+      title.innerHTML = "¡YA ESTÁN<br>EN EL JUEGO!";
+      description.textContent = "La inscripción fue guardada correctamente. Conserva el código y envía la constancia al WhatsApp oficial.";
+    } else {
+      status.textContent = "ENVÍO POR WHATSAPP";
+      title.innerHTML = "INSCRIPCIÓN<br>LISTA PARA ENVIAR";
+      description.textContent = serverError
+        ? "El registro central no respondió, pero la inscripción no se perderá. Presiona Enviar en WhatsApp para remitirla al 942 899 919."
+        : "WhatsApp debe abrirse con todos los datos. Presiona Enviar para completar la inscripción al 942 899 919.";
+    }
+
     modal.classList.add("open");
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
@@ -296,16 +345,38 @@
     const button = $(".submit-button", form);
     const original = button.innerHTML;
     const payload = getPayload();
+    const fallbackCode = createReferenceCode();
+
+    if (!endpoint) {
+      try {
+        localStorage.setItem("anin_last_registration_draft", JSON.stringify({
+          code: fallbackCode,
+          savedAt: new Date().toISOString(),
+          payload
+        }));
+      } catch (storageError) {
+        console.warn("No se pudo guardar la copia temporal.", storageError);
+      }
+
+      openModal(payload, fallbackCode, false);
+      const whatsappUrl = getWhatsAppUrl(payload, fallbackCode, false);
+      const opened = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      if (!opened) {
+        showFormMessage("El navegador bloqueó la apertura automática. Pulsa el botón ENVIAR AL WHATSAPP dentro de la ventana de confirmación.");
+      }
+      return;
+    }
+
     button.disabled = true;
     button.innerHTML = "<span>GUARDANDO EN EL REGISTRO CENTRAL…</span><i>•••</i>";
 
     try {
       const result = await submitRegistration(payload);
-      openModal(payload, result.code);
+      openModal(payload, result.code, true);
       resetForm();
     } catch (error) {
-      showFormMessage(error.message || "No pudimos registrar el equipo. Revisa tu conexión e inténtalo nuevamente.");
       console.error(error);
+      openModal(payload, fallbackCode, false, error.message || "El servidor no respondió.");
     } finally {
       button.disabled = false;
       button.innerHTML = original;

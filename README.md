@@ -1,44 +1,33 @@
-# Copa ANIN 2026 — versión con registro central
+# Copa ANIN 2026
 
-Esta versión elimina el almacenamiento local como mecanismo de inscripción.
+Aplicación web de inscripción para la Copa ANIN Arequipa 2026.
 
-## Funcionamiento
+## Flujo de inscripción
 
-1. El formulario valida los datos del equipo y de los jugadores.
-2. Envía la inscripción al Web App de Google Apps Script.
-3. Google Apps Script guarda los datos en la hoja central de Google Sheets.
-4. El servidor genera el código único de inscripción.
-5. Solo después de la confirmación del servidor aparece el mensaje de éxito.
-6. Se habilita un botón para enviar la constancia al WhatsApp oficial **942 899 919**.
+- Valida datos del equipo, delegado y jugadores.
+- Prepara un mensaje completo dirigido al WhatsApp oficial **+51 942 899 919**.
+- La inscripción se considera recibida cuando el participante envía el mensaje y este llega a la organización.
+- Si se configura `REGISTRATION_ENDPOINT`, la aplicación guarda primero en Google Sheets y luego ofrece enviar la constancia por WhatsApp.
+- Si el registro central no está configurado o falla, la aplicación no bloquea el formulario ni muestra una confirmación falsa: activa el envío por WhatsApp como canal oficial.
 
-## Base central creada
+## Configuración
 
-- Archivo: `Copa ANIN 2026 - Registro Central de Inscripciones`
-- Spreadsheet ID: `1lTq5VmKSRM9qM5Uu9luJ4-f6FSZM7J5i1gME83LeNDg`
-- Hojas: `Inscripciones` y `Jugadores`
+Edite `assets/js/config.js`:
 
-## Activación del backend
+```js
+window.ANIN_CONFIG = {
+  REGISTRATION_ENDPOINT: "",
+  WHATSAPP_NUMBER: "51942899919"
+};
+```
 
-1. Abra `https://script.google.com` con la misma cuenta propietaria de la hoja.
-2. Cree un proyecto nuevo llamado `Copa ANIN 2026 - Backend`.
-3. Reemplace el contenido de `Code.gs` por el archivo `google-apps-script/Code.gs` incluido en este proyecto.
-4. En **Configuración del proyecto**, active la visualización del archivo de manifiesto y copie también `google-apps-script/appsscript.json`.
-5. Pulse **Implementar > Nueva implementación**.
-6. Seleccione **Aplicación web**.
-7. Ejecutar como: **Yo**.
-8. Quién tiene acceso: **Cualquier usuario**.
-9. Autorice el acceso y copie la URL terminada en `/exec`.
-10. Abra `assets/js/config.js` y pegue esa URL en `REGISTRATION_ENDPOINT`.
-11. Suba todos los archivos actualizados al repositorio GitHub `Copa_ANIN`.
+Consulte `INSTRUCCIONES_ACTIVACION.txt` para habilitar Google Apps Script.
 
-## Prueba obligatoria
+## Fecha, horario y ubicación confirmados
 
-Antes de difundir la aplicación:
-
-1. Registre un equipo de prueba.
-2. Verifique que aparezca una fila en `Inscripciones`.
-3. Verifique que todos los jugadores aparezcan en `Jugadores`.
-4. Confirme que el código mostrado coincida con el código guardado.
-5. Pulse el botón de WhatsApp y envíe la constancia al 942 899 919.
-
-La aplicación bloqueará el envío mientras `REGISTRATION_ENDPOINT` esté vacío, evitando nuevas confirmaciones falsas.
+- Fecha: viernes 17 de julio de 2026.
+- Horario de cancha reservada: 8:00 p. m. a 10:00 p. m.
+- Local: cancha deportiva **Balón Fuego**.
+- Nueva sede: ya no es frente a Makro.
+- Ubicación oficial: https://maps.app.goo.gl/oDiJbjf8zxkYyega8
+- La aplicación muestra un botón directo a Google Maps y añade estos datos al mensaje de inscripción por WhatsApp.
