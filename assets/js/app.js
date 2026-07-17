@@ -104,18 +104,18 @@
     },
     anin: {
       name: 'LOS VOLCÁNICOS',
-      league: 'Equipo invitado · Plantel confirmado',
+      league: 'Club ANIN · Plantel confirmado',
       lead: 'Energía, orgullo azul y personalidad para animar la jornada amistosa.',
       meta: [
-        'Participación: Equipo invitado',
-        'Jugadores: 10',
+        'Club: ANIN',
+        'Jugadores: 11',
         'Figura: Rafael Zeña “El Mbappé”',
         'Camiseta: Azul volcánico'
       ],
       highlights: [
         'José Rafael Zeña Peche asume el rol de “El Mbappé”, explosivo y decisivo.',
         'Su estética volcánica transmite energía, coraje y pasión por competir.',
-        'Juan Antonio Cori Mamani es “El Guerrero”; Henry Mamani Contreras, “El Motor”; y David Polar Poma se suma como “El Iniesta”, pausa y visión para construir cada ataque.',
+        'Juan Antonio Cori Mamani es “El Guerrero”; Henry Mamani Contreras, “El Motor”; David Polar Poma aporta pausa y visión; y Jaime Henry Quea Ccama se suma al plantel.',
         'Los Volcánicos llegan para compartir una jornada de integración con identidad y fuego interno.'
       ],
       roster: [
@@ -128,7 +128,8 @@
         ['Juan Antonio Cori Mamani','El Guerrero','Coraje, entrega y lucha hasta el final.'],
         ['José Antonio Palomino Puma','El Julián','Presión, movilidad y oportunismo.'],
         ['Henry Mamani Contreras','El Motor','Energía, recorrido y conexión permanente con el juego.'],
-        ['David Polar Poma','El Iniesta','Pausa, lectura y pase entre líneas para darle sentido a cada ataque.', true]
+        ['David Polar Poma','El Iniesta','Pausa, lectura y pase entre líneas para darle sentido a cada ataque.'],
+        ['Jaime Henry Quea Ccama','Nuevo refuerzo','48 años · DNI 29734274.', true]
       ],
       album: 'assets/images/team-anin-album.png',
       albumLink: 'album-anin.html',
