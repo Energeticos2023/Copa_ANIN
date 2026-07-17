@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=album-2026-1">
+  <link rel="stylesheet" href="assets/css/styles.css?v=world-cup-2026">
 </head>
 <body>
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -26,6 +26,7 @@
       <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
       <nav class="main-nav" aria-label="Navegación principal">
         <a href="#equipos">Equipos</a>
+        <a href="#matchday">Matchday</a>
         <a href="#bases">Bases</a>
         <a href="#comentarios">Comentarios</a>
         <a class="nav-cta" href="#equipos">Ver planteles <span>↗</span></a>
@@ -39,12 +40,12 @@
       <div class="hero-lines"></div>
       <div class="container hero-grid">
         <div class="hero-copy reveal">
-          <div class="eyebrow"><i></i> Copa ANIN 2026 · Inscripciones cerradas</div>
-          <h1>LOS<br><span>PLANTELES</span><br>YA ESTÁN LISTOS.</h1>
-          <p>La Copa ANIN 2026 entra en su fase más emocionante. Ya puedes conocer a los cuatro equipos oficiales, descubrir sus camisetas premium, revisar sus álbumes y sumarte al muro de comentarios.</p>
+          <div class="eyebrow"><i></i> Matchday · Arequipa 2026</div>
+          <h1>UNA COPA.<br><span>CUATRO</span><br>EQUIPOS.</h1>
+          <p>La cancha está lista. Los planteles están completos. Vive la Copa ANIN 2026: conoce a sus protagonistas, elige tus colores y súmate a la previa del torneo.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#equipos">Ver equipos <span>↗</span></a>
-            <a class="button button-ghost" href="#comentarios">Opinar ahora <span>↓</span></a>
+            <a class="button button-primary" href="#equipos">Conocer planteles <span>↗</span></a>
+            <a class="button button-ghost" href="#matchday">Ver el matchday <span>↓</span></a>
           </div>
           <div class="organizer"><span>Organiza</span><strong>UDE AREQUIPA</strong></div>
         </div>
@@ -55,12 +56,33 @@
           <div class="trophy-tag"><span>SEDE OFICIAL</span><b>CANCHA BALÓN FUEGO</b><small>Viernes 17 de julio · 8:00 p. m. a 10:00 p. m.</small></div>
         </div>
       </div>
+      <div class="hero-watermark" aria-hidden="true">ANIN</div>
       <div class="event-strip">
         <div class="container event-grid event-grid-4">
           <div class="event-item"><span class="event-icon">01</span><div><small>CUÁNDO</small><b>Viernes 17 de julio</b></div></div>
           <div class="event-item"><span class="event-icon">02</span><div><small>HORA</small><b>8:00 p. m. a 10:00 p. m.</b></div></div>
           <div class="event-item"><span class="event-icon">03</span><div><small>DÓNDE</small><b>Cancha Balón Fuego</b><small><a class="inline-map-link" href="https://maps.app.goo.gl/oDiJbjf8zxkYyega8" target="_blank" rel="noopener">Abrir ubicación ↗</a></small></div></div>
           <div class="event-item countdown-wrap"><small>FALTAN</small><div id="countdown" aria-label="Cuenta regresiva"><b>00</b><em>D</em><b>00</b><em>H</em><b>00</b><em>M</em></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="matchday" id="matchday" aria-labelledby="matchday-title">
+      <div class="container matchday-grid">
+        <div class="matchday-heading reveal">
+          <span class="live-pill"><i></i> TODO LISTO</span>
+          <span class="kicker light">EL DÍA DE LA COPA</span>
+          <h2 id="matchday-title">EL FÚTBOL<br>NOS REÚNE.</h2>
+          <p>Una noche para competir, celebrar el aniversario de ANIN y demostrar que el juego limpio también construye grandes equipos.</p>
+          <a class="matchday-map" href="https://maps.app.goo.gl/oDiJbjf8zxkYyega8" target="_blank" rel="noopener"><span>Cómo llegar</span><b>Cancha Balón Fuego ↗</b></a>
+        </div>
+        <div class="matchday-board reveal delay-1">
+          <div class="board-top"><span>COPA ANIN · EDICIÓN 2026</span><b>AREQUIPA, PERÚ</b></div>
+          <div class="club-row"><span class="club-code cci">CCI</span><div><b>CCI CLUB</b><small>Supervisión</small></div><em>01</em></div>
+          <div class="club-row"><span class="club-code real">RC</span><div><b>REAL COVACHA</b><small>JYS</small></div><em>02</em></div>
+          <div class="club-row"><span class="club-code jys">JP</span><div><b>JYS EQUIPO PRIME</b><small>JYS</small></div><em>03</em></div>
+          <div class="club-row"><span class="club-code anin">VA</span><div><b>LOS VOLCÁNICOS DE ANIN</b><small>ANIN</small></div><em>04</em></div>
+          <div class="board-bottom"><div><small>FECHA</small><b>17 JUL 2026</b></div><div><small>PRIMER PITAZO</small><b>20:00 H</b></div><div><small>FORMATO</small><b>RELÁMPAGO</b></div></div>
         </div>
       </div>
     </section>
@@ -76,7 +98,7 @@
           <button class="team-button is-active" type="button" data-team="cci" role="tab" aria-selected="true">CCI CLUB<small>Supervisión · 10 jugadores</small></button>
           <button class="team-button" type="button" data-team="real" role="tab" aria-selected="false">REAL COVACHA<small>JYS · 10 jugadores</small></button>
           <button class="team-button" type="button" data-team="jys" role="tab" aria-selected="false">JYS EQUIPO PRIME<small>JYS · 10 jugadores</small></button>
-          <button class="team-button" type="button" data-team="anin" role="tab" aria-selected="false">LOS VOLCÁNICOS DE ANIN<small>ANIN · 8 jugadores</small></button>
+          <button class="team-button" type="button" data-team="anin" role="tab" aria-selected="false">LOS VOLCÁNICOS DE ANIN<small>ANIN · 10 jugadores</small></button>
         </div>
 
         <article class="team-showcase reveal" id="team-showcase" aria-live="polite">
@@ -85,7 +107,7 @@
             <h3 id="team-title">CCI CLUB</h3>
             <p class="team-lead" id="team-lead">Orden, identidad y ambición para pelear la gloria de la Copa ANIN 2026.</p>
             <div class="team-meta" id="team-meta"></div>
-            <ul class="team-highlights" id="team-highlights"></ul>
+            <ul class="team-highlights" id="team-highlights"></ul><div class="team-roster" id="team-roster" aria-label="Plantel del equipo"></div>
             <div class="team-cta-row">
               <a class="button button-primary" id="team-album-link" href="assets/images/team-cci-album.png" target="_blank" rel="noopener">Abrir álbum <span>↗</span></a>
               <a class="button button-ghost team-jersey-link" id="team-jersey-link" href="assets/images/team-cci-jersey.png" target="_blank" rel="noopener">Ver camiseta <span>↗</span></a>
@@ -166,6 +188,6 @@
     <div class="container footer-bottom"><span>© 2026 Copa ANIN. Todos los derechos reservados.</span><span>17.07.2026 · Arequipa · Cancha Balón Fuego</span></div>
   </footer>
 
-  <script src="assets/js/app.js?v=album-2026-1"></script>
+  <script src="assets/js/app.js?v=world-cup-2026"></script>
 </body>
 </html>

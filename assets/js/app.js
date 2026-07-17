@@ -18,7 +18,20 @@
         'Pedro Huaraca lidera la expectativa con el sello de “El Messi”.',
         'CCI CLUB quiere imponer orden, inteligencia táctica y ambición competitiva.'
       ],
+      roster: [
+        ['Pedro Huaraca Rojas','El Messi','Visión total, gambeta corta y definición inteligente.'],
+        ['Juan Crisbaldo Mamani Morocco','El Modrić','Pausa, orden y control en la mitad.'],
+        ['Erik Eduard Romani Chávez','El Julián','Presión alta, movilidad y gol.'],
+        ['Luis Enrique Aquino Núñez','El Van Dijk','Firmeza, lectura y liderazgo atrás.'],
+        ['Ricardo Amenero Rivera','El Griezmann','Sacrificio, asociación y sorpresa ofensiva.'],
+        ['Raúl Velazco Infa','El Rodri','Equilibrio, recuperación y salida limpia.'],
+        ['Franklin Michael García Aquino','El De Bruyne','Asistencia fina y cambio de ritmo.'],
+        ['Efraín Torres Maquera','El Vinícius','Desequilibrio, velocidad y atrevimiento.'],
+        ['Phool Camacho Zorogastua','El Lautaro','Instinto de área y garra.'],
+        ['Alexis Tito Machaca','El Cristiano','Salto, potencia y hambre de gol.']
+      ],
       album: 'assets/images/team-cci-album.png',
+      albumLink: 'assets/images/team-cci-album.png',
       jersey: 'assets/images/team-cci-jersey.png',
       albumAlt: 'Álbum oficial de CCI CLUB',
       jerseyAlt: 'Camiseta oficial de CCI CLUB'
@@ -38,7 +51,20 @@
         'Mario Flores asume el rol de “El Haaland”, sinónimo de potencia y gol.',
         'Real Covacha promete intensidad, remate fuerte y una actitud feroz.'
       ],
+      roster: [
+        ['Ronald Altamirano Echevarria','El Dibu','Seguridad, carácter y reflejos.'],
+        ['Stalinn Vargas Carpio','El Rúben Dias','Mando, cierre y orden defensivo.'],
+        ['José Eduardo Chávez Lee','El Kroos','Pase largo, control y serenidad.'],
+        ['Luis Alberto Soto Chicoma','El Bellingham','Despliegue, personalidad y llegada.'],
+        ['Kevin Maurelio Vásquez Oropeza','El Harry Kane','Remate fuerte y lectura ofensiva.'],
+        ['Omar Edu Álvarez Escobar','El Salah','Diagonales, aceleración y golpe letal.'],
+        ['Mario Genaro Flores Quispe','El Haaland','Potencia, zancada y gol implacable.'],
+        ['Nilson Fernando Rodríguez Cera','El Kvaratskhelia','Desequilibrio, rebeldía y magia.'],
+        ['José Bernardo Mocarro Willis','El Lautaro','Cazador del gol y presión constante.'],
+        ['Karol Quispe Cabrera','El Vinícius','Uno contra uno y chispa pura.']
+      ],
       album: 'assets/images/team-real-album.png',
+      albumLink: 'assets/images/team-real-album.png',
       jersey: 'assets/images/team-real-jersey.png',
       albumAlt: 'Álbum oficial de REAL COVACHA',
       jerseyAlt: 'Camiseta oficial de REAL COVACHA'
@@ -58,7 +84,20 @@
         'Es un plantel moderno, agresivo y con una propuesta dinámica.',
         'JYS Equipo Prime llega con liderazgo, pase filtrado y talento joven.'
       ],
+      roster: [
+        ['Abner Jesús Illatopa Chamorro','El Yamal','Descaro, talento y creatividad precoz.'],
+        ['Luis Carlos Aguilar Huamani','El Rodri','Equilibrio táctico y pase limpio.'],
+        ['Abel Enmanuel Alva Castillo','El Van Dijk','Fortaleza y lectura aérea.'],
+        ['César Absalón Murillo Bonifacio','El Rüdiger','Intensidad, marca y coraje.'],
+        ['Eder Arnulfo Tapia Campana','El Carvajal','Energía, oficio e ida y vuelta.'],
+        ['Gabriel Omar Mendoza Flores','El Bernardo Silva','Técnica corta e inteligencia.'],
+        ['Gerardo Manuel Medina Tapia','El Bruno Fernandes','Liderazgo, pase filtrado y remate.'],
+        ['Juan Leonardo Zavala Ossio','El Foden','Movilidad, timing y talento fino.'],
+        ['Marco Antonio Salazar Yancari','El Musiala','Gambeta, cambio de ritmo y frescura.'],
+        ['Paulo César Salazar García','El Lewandowski','Definición, oficio y presencia.']
+      ],
       album: 'assets/images/team-jys-album.png',
+      albumLink: 'assets/images/team-jys-album.png',
       jersey: 'assets/images/team-jys-jersey.png',
       albumAlt: 'Álbum oficial de JYS EQUIPO PRIME',
       jerseyAlt: 'Camiseta oficial de JYS EQUIPO PRIME'
@@ -69,16 +108,30 @@
       lead: 'Fuego competitivo, orgullo azul y personalidad para encender el campeonato.',
       meta: [
         'Área: ANIN',
-        'Jugadores: 8',
+        'Jugadores: 10',
         'Figura: Rafael Zeña “El Mbappé”',
         'Camiseta: Azul volcánico'
       ],
       highlights: [
         'José Rafael Zeña Peche asume el rol de “El Mbappé”, explosivo y decisivo.',
         'Su estética volcánica transmite energía, coraje y pasión por competir.',
+        'Juan Antonio Cori Mamani es “El Guerrero”; Henry Mamani Contreras, “El Motor”; y David Polar Poma se suma como “El Iniesta”, pausa y visión para construir cada ataque.',
         'Los Volcánicos de ANIN apuntan a dejar huella con identidad y fuego interno.'
       ],
+      roster: [
+        ['Felipe Sánchez Quispe','El Courtois','Altura, manos firmes y seguridad.'],
+        ['Herbert Bondia Condori','El Kimmich','Disciplina, precisión y recorrido.'],
+        ['Edwin Antallaca Chipana','El Marquinhos','Anticipo, temple y mando.'],
+        ['Jorge Luis Tito Marrón','El Hakimi','Velocidad, ida y vuelta, ambición.'],
+        ['Gabriel Rivera Saavedra','El Bellingham','Despliegue, jerarquía y llegada.'],
+        ['José Rafael Zeña Peche','El Mbappé','Explosión, confianza y gol decisivo.'],
+        ['Juan Antonio Cori Mamani','El Guerrero','Coraje, entrega y lucha hasta el final.'],
+        ['José Antonio Palomino Puma','El Julián','Presión, movilidad y oportunismo.'],
+        ['Henry Mamani Contreras','El Motor','Energía, recorrido y conexión permanente con el juego.'],
+        ['David Polar Poma','El Iniesta','Pausa, lectura y pase entre líneas para darle sentido a cada ataque.', true]
+      ],
       album: 'assets/images/team-anin-album.png',
+      albumLink: 'album-anin.html',
       jersey: 'assets/images/team-anin-jersey.png',
       albumAlt: 'Álbum oficial de LOS VOLCÁNICOS DE ANIN',
       jerseyAlt: 'Camiseta oficial de LOS VOLCÁNICOS DE ANIN'
@@ -143,6 +196,14 @@
     $('#team-meta').innerHTML = team.meta.map((item) => `<span>${item}</span>`).join('');
     $('#team-highlights').innerHTML = team.highlights.map((item) => `<li>${item}</li>`).join('');
 
+    const roster = $('#team-roster');
+    roster.innerHTML = team.roster.map(([name, nickname, narrative, isNew], index) => `
+      <article class="roster-card${isNew ? ' roster-card-new' : ''}">
+        <span>${String(index + 1).padStart(2, '0')}</span>
+        <div>${isNew ? '<em>NUEVO</em>' : ''}<strong>${escapeHtml(name)}</strong><b>“${escapeHtml(nickname)}”</b><small>${escapeHtml(narrative)}</small></div>
+      </article>
+    `).join('');
+
     const albumImage = $('#team-album-image');
     const jerseyImage = $('#team-jersey-image');
     albumImage.src = team.album;
@@ -150,7 +211,7 @@
     jerseyImage.src = team.jersey;
     jerseyImage.alt = team.jerseyAlt;
 
-    $('#team-album-link').href = team.album;
+    $('#team-album-link').href = team.albumLink || team.album;
     $('#team-jersey-link').href = team.jersey;
   }
 
@@ -256,6 +317,15 @@
 
   $$('.team-button').forEach((button) => {
     button.addEventListener('click', () => activateTeam(button.dataset.team));
+    button.addEventListener('keydown', (event) => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      const buttons = $$('.team-button');
+      const current = buttons.indexOf(button);
+      const next = event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1 : (current + (event.key === 'ArrowRight' ? 1 : -1) + buttons.length) % buttons.length;
+      buttons[next].focus();
+      activateTeam(buttons[next].dataset.team);
+    });
   });
 
   updateCountdown();
