@@ -6,7 +6,7 @@
     cci: {
       name: 'CCI CLUB',
       league: 'Supervisión · Plantel oficial',
-      lead: 'Orden, identidad y ambición para pelear la gloria de la Copa ANIN 2026.',
+      lead: 'Orden, identidad y compañerismo para disfrutar una gran jornada deportiva.',
       meta: [
         'Área: Supervisión',
         'Jugadores: 10',
@@ -72,7 +72,7 @@
     jys: {
       name: 'JYS EQUIPO PRIME',
       league: 'JYS · Plantel oficial',
-      lead: 'Intensidad, disciplina y jerarquía para competir por todo en la Copa ANIN 2026.',
+      lead: 'Intensidad, disciplina y compañerismo para animar el encuentro amistoso.',
       meta: [
         'Área: JYS',
         'Jugadores: 10',
@@ -103,11 +103,11 @@
       jerseyAlt: 'Camiseta oficial de JYS EQUIPO PRIME'
     },
     anin: {
-      name: 'LOS VOLCÁNICOS DE ANIN',
-      league: 'ANIN · Plantel oficial',
-      lead: 'Fuego competitivo, orgullo azul y personalidad para encender el campeonato.',
+      name: 'LOS VOLCÁNICOS',
+      league: 'Equipo invitado · Plantel confirmado',
+      lead: 'Energía, orgullo azul y personalidad para animar la jornada amistosa.',
       meta: [
-        'Área: ANIN',
+        'Participación: Equipo invitado',
         'Jugadores: 10',
         'Figura: Rafael Zeña “El Mbappé”',
         'Camiseta: Azul volcánico'
@@ -116,7 +116,7 @@
         'José Rafael Zeña Peche asume el rol de “El Mbappé”, explosivo y decisivo.',
         'Su estética volcánica transmite energía, coraje y pasión por competir.',
         'Juan Antonio Cori Mamani es “El Guerrero”; Henry Mamani Contreras, “El Motor”; y David Polar Poma se suma como “El Iniesta”, pausa y visión para construir cada ataque.',
-        'Los Volcánicos de ANIN apuntan a dejar huella con identidad y fuego interno.'
+        'Los Volcánicos llegan para compartir una jornada de integración con identidad y fuego interno.'
       ],
       roster: [
         ['Felipe Sánchez Quispe','El Courtois','Altura, manos firmes y seguridad.'],
@@ -133,13 +133,13 @@
       album: 'assets/images/team-anin-album.png',
       albumLink: 'album-anin.html',
       jersey: 'assets/images/team-anin-jersey.png',
-      albumAlt: 'Álbum oficial de LOS VOLCÁNICOS DE ANIN',
-      jerseyAlt: 'Camiseta oficial de LOS VOLCÁNICOS DE ANIN'
+      albumAlt: 'Álbum de LOS VOLCÁNICOS',
+      jerseyAlt: 'Camiseta de LOS VOLCÁNICOS'
     }
   };
 
   const seedComments = [
-    { author: 'Afición ANIN', team: 'LOS VOLCÁNICOS DE ANIN', message: 'Este equipo llega con mucha personalidad. ¡Los Volcánicos van a dar pelea!', createdAt: '2026-07-16T19:15:00-05:00' },
+    { author: 'Afición local', team: 'LOS VOLCÁNICOS', message: 'Este equipo llega con mucha personalidad. ¡Los Volcánicos van a dar pelea!', createdAt: '2026-07-16T19:15:00-05:00' },
     { author: 'Hincha CCI', team: 'CCI CLUB', message: 'Pedro Huaraca promete espectáculo. CCI CLUB se ve muy ordenado y competitivo.', createdAt: '2026-07-16T19:22:00-05:00' },
     { author: 'Barra JYS', team: 'JYS EQUIPO PRIME', message: 'Abner Illatopa tiene que romperla. Ese álbum está de nivel mundial.', createdAt: '2026-07-16T19:34:00-05:00' },
     { author: 'Tribuna Covacha', team: 'REAL COVACHA', message: 'Real Covacha tiene presencia y una camiseta imponente. ¡Vamos con todo!', createdAt: '2026-07-16T19:44:00-05:00' }
