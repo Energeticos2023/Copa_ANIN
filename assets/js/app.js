@@ -1,430 +1,270 @@
 (() => {
-  "use strict";
-
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
-  const form = $("#registration-form");
-  const playersList = $("#players-list");
-  const template = $("#player-template");
-  const modal = $("#success-modal");
-  const config = window.ANIN_CONFIG || {};
-  const endpoint = String(config.REGISTRATION_ENDPOINT || "").trim();
-  const whatsappNumber = String(config.WHATSAPP_NUMBER || "51942899919").replace(/\D/g, "");
-  const eventStartIso = String(config.EVENT_START_ISO || "2026-07-17T20:00:00-05:00");
-  const eventDateLabel = String(config.EVENT_DATE_LABEL || "Viernes 17 de julio de 2026");
-  const eventTimeLabel = String(config.EVENT_TIME_LABEL || "8:00 p. m. a 10:00 p. m.");
-  const venueLabel = String(config.VENUE_LABEL || "Cancha deportiva Balón Fuego");
-  const venueNote = String(config.VENUE_NOTE || "Nueva sede: ya no es frente a Makro.");
-  const mapsUrl = String(config.MAPS_URL || "https://maps.app.goo.gl/oDiJbjf8zxkYyega8");
-  const MIN_PLAYERS = 6;
-  const MAX_PLAYERS = 15;
-  const REQUEST_TIMEOUT_MS = 30000;
 
-  const pad = (value) => String(value).padStart(2, "0");
+  const teams = {
+    cci: {
+      name: 'CCI CLUB',
+      league: 'Supervisión · Plantel oficial',
+      lead: 'Orden, identidad y ambición para pelear la gloria de la Copa ANIN 2026.',
+      meta: [
+        'Área: Supervisión',
+        'Jugadores: 10',
+        'Figura: Pedro Huaraca “El Messi”',
+        'Camiseta: Azul con dorado'
+      ],
+      highlights: [
+        'Un plantel equilibrado que mezcla pausa, visión y sacrificio colectivo.',
+        'Pedro Huaraca lidera la expectativa con el sello de “El Messi”.',
+        'CCI CLUB quiere imponer orden, inteligencia táctica y ambición competitiva.'
+      ],
+      album: 'assets/images/team-cci-album.png',
+      jersey: 'assets/images/team-cci-jersey.png',
+      albumAlt: 'Álbum oficial de CCI CLUB',
+      jerseyAlt: 'Camiseta oficial de CCI CLUB'
+    },
+    real: {
+      name: 'REAL COVACHA',
+      league: 'JYS · Plantel oficial',
+      lead: 'Rugido, velocidad y contundencia en un equipo hecho para competir con garra.',
+      meta: [
+        'Área: JYS',
+        'Jugadores: 10',
+        'Figura: Mario Flores “El Haaland”',
+        'Camiseta: Dorado con negro'
+      ],
+      highlights: [
+        'Su identidad visual se inspira en la fuerza del león y el espíritu ganador.',
+        'Mario Flores asume el rol de “El Haaland”, sinónimo de potencia y gol.',
+        'Real Covacha promete intensidad, remate fuerte y una actitud feroz.'
+      ],
+      album: 'assets/images/team-real-album.png',
+      jersey: 'assets/images/team-real-jersey.png',
+      albumAlt: 'Álbum oficial de REAL COVACHA',
+      jerseyAlt: 'Camiseta oficial de REAL COVACHA'
+    },
+    jys: {
+      name: 'JYS EQUIPO PRIME',
+      league: 'JYS · Plantel oficial',
+      lead: 'Intensidad, disciplina y jerarquía para competir por todo en la Copa ANIN 2026.',
+      meta: [
+        'Área: JYS',
+        'Jugadores: 10',
+        'Figura: Abner Illatopa “El Yamal”',
+        'Camiseta: Amarillo premium'
+      ],
+      highlights: [
+        'Abner Illatopa encarna la rebeldía, el descaro y la frescura de “El Yamal”.',
+        'Es un plantel moderno, agresivo y con una propuesta dinámica.',
+        'JYS Equipo Prime llega con liderazgo, pase filtrado y talento joven.'
+      ],
+      album: 'assets/images/team-jys-album.png',
+      jersey: 'assets/images/team-jys-jersey.png',
+      albumAlt: 'Álbum oficial de JYS EQUIPO PRIME',
+      jerseyAlt: 'Camiseta oficial de JYS EQUIPO PRIME'
+    },
+    anin: {
+      name: 'LOS VOLCÁNICOS DE ANIN',
+      league: 'ANIN · Plantel oficial',
+      lead: 'Fuego competitivo, orgullo azul y personalidad para encender el campeonato.',
+      meta: [
+        'Área: ANIN',
+        'Jugadores: 8',
+        'Figura: Rafael Zeña “El Mbappé”',
+        'Camiseta: Azul volcánico'
+      ],
+      highlights: [
+        'José Rafael Zeña Peche asume el rol de “El Mbappé”, explosivo y decisivo.',
+        'Su estética volcánica transmite energía, coraje y pasión por competir.',
+        'Los Volcánicos de ANIN apuntan a dejar huella con identidad y fuego interno.'
+      ],
+      album: 'assets/images/team-anin-album.png',
+      jersey: 'assets/images/team-anin-jersey.png',
+      albumAlt: 'Álbum oficial de LOS VOLCÁNICOS DE ANIN',
+      jerseyAlt: 'Camiseta oficial de LOS VOLCÁNICOS DE ANIN'
+    }
+  };
+
+  const seedComments = [
+    { author: 'Afición ANIN', team: 'LOS VOLCÁNICOS DE ANIN', message: 'Este equipo llega con mucha personalidad. ¡Los Volcánicos van a dar pelea!', createdAt: '2026-07-16T19:15:00-05:00' },
+    { author: 'Hincha CCI', team: 'CCI CLUB', message: 'Pedro Huaraca promete espectáculo. CCI CLUB se ve muy ordenado y competitivo.', createdAt: '2026-07-16T19:22:00-05:00' },
+    { author: 'Barra JYS', team: 'JYS EQUIPO PRIME', message: 'Abner Illatopa tiene que romperla. Ese álbum está de nivel mundial.', createdAt: '2026-07-16T19:34:00-05:00' },
+    { author: 'Tribuna Covacha', team: 'REAL COVACHA', message: 'Real Covacha tiene presencia y una camiseta imponente. ¡Vamos con todo!', createdAt: '2026-07-16T19:44:00-05:00' }
+  ];
 
   function updateCountdown() {
-    const node = $("#countdown");
-    const eventDate = new Date(eventStartIso);
+    const node = $('#countdown');
+    if (!node) return;
+    const eventDate = new Date('2026-07-17T20:00:00-05:00');
     const distance = Math.max(0, eventDate.getTime() - Date.now());
     const days = Math.floor(distance / 86400000);
     const hours = Math.floor((distance % 86400000) / 3600000);
     const minutes = Math.floor((distance % 3600000) / 60000);
+    const pad = (value) => String(value).padStart(2, '0');
     node.innerHTML = `<b>${pad(days)}</b><em>D</em><b>${pad(hours)}</b><em>H</em><b>${pad(minutes)}</b><em>M</em>`;
   }
 
   function updateHeader() {
-    $(".site-header").classList.toggle("scrolled", window.scrollY > 90);
+    const header = $('.site-header');
+    if (header) header.classList.toggle('scrolled', window.scrollY > 90);
   }
 
   function setupReveal() {
+    const items = $$('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      items.forEach((item) => item.classList.add('visible'));
+      return;
+    }
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
+          entry.target.classList.add('visible');
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.12 });
-    $$(".reveal").forEach((item) => observer.observe(item));
+    items.forEach((item) => observer.observe(item));
   }
 
-  function updatePlayerRows() {
-    const rows = $$(".player-row", playersList);
-    rows.forEach((row, index) => {
-      $(".player-number", row).textContent = pad(index + 1);
-      $("[data-field='name']", row).name = `player_${index + 1}_name`;
-      $("[data-field='dni']", row).name = `player_${index + 1}_dni`;
-      $("[data-field='gender']", row).name = `player_${index + 1}_gender`;
-      $(".remove-player", row).hidden = rows.length <= MIN_PLAYERS;
-    });
-    $("#player-count").textContent = `${rows.length} registrados`;
-    $("#add-player").hidden = rows.length >= MAX_PLAYERS;
-  }
+  function activateTeam(teamKey) {
+    const team = teams[teamKey];
+    if (!team) return;
 
-  function addPlayer() {
-    if ($$(".player-row", playersList).length >= MAX_PLAYERS) return;
-    playersList.append(template.content.cloneNode(true));
-    updatePlayerRows();
-  }
-
-  function clearFieldError(input) {
-    input.classList.remove("invalid");
-    const error = input.closest(".field")?.querySelector(".error");
-    if (error) error.textContent = "";
-  }
-
-  function showFieldError(input, message) {
-    input.classList.add("invalid");
-    const error = input.closest(".field")?.querySelector(".error");
-    if (error) error.textContent = message;
-  }
-
-  function showFormMessage(message) {
-    const node = $("#form-message");
-    node.textContent = message;
-    node.classList.add("show");
-  }
-
-  function validateForm() {
-    let valid = true;
-    $$("input, select", form).forEach(clearFieldError);
-    $("#form-message").classList.remove("show");
-
-    const rules = [
-      [form.elements.teamName, (v) => v.trim().length >= 3, "Ingresa un nombre de equipo válido."],
-      [form.elements.jersey, (v) => v.trim().length >= 3, "Indica el color de camiseta."],
-      [form.elements.delegate, (v) => v.trim().split(/\s+/).length >= 2, "Ingresa nombres y apellidos."],
-      [form.elements.phone, (v) => /^\+?[\d\s-]{9,15}$/.test(v.trim()), "Ingresa un celular válido."],
-      [form.elements.email, (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()), "Ingresa un correo válido."]
-    ];
-    rules.forEach(([input, test, message]) => {
-      if (!test(input.value)) {
-        showFieldError(input, message);
-        valid = false;
-      }
+    $$('.team-button').forEach((button) => {
+      const active = button.dataset.team === teamKey;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-selected', String(active));
     });
 
-    const players = $$(".player-row", playersList);
-    const dnis = [];
-    players.forEach((row) => {
-      const name = $("[data-field='name']", row);
-      const dni = $("[data-field='dni']", row);
-      const gender = $("[data-field='gender']", row);
-      if (name.value.trim().split(/\s+/).length < 2) {
-        showFieldError(name, "Completa nombre y apellido.");
-        valid = false;
-      }
-      if (!/^\d{8}$/.test(dni.value.trim())) {
-        showFieldError(dni, "Debe tener 8 dígitos.");
-        valid = false;
-      }
-      if (!gender.value) {
-        showFieldError(gender, "Selecciona una opción.");
-        valid = false;
-      }
-      dnis.push(dni.value.trim());
-    });
+    $('#team-league').textContent = team.league;
+    $('#team-title').textContent = team.name;
+    $('#team-lead').textContent = team.lead;
 
-    dnis.forEach((dni, index) => {
-      if (dni && dnis.indexOf(dni) !== index) {
-        showFieldError($("[data-field='dni']", players[index]), "Este DNI está repetido.");
-        valid = false;
-      }
-    });
+    $('#team-meta').innerHTML = team.meta.map((item) => `<span>${item}</span>`).join('');
+    $('#team-highlights').innerHTML = team.highlights.map((item) => `<li>${item}</li>`).join('');
 
-    if (form.elements.sport.value === "Vóley mixto") {
-      const genders = players.map((row) => $("[data-field='gender']", row).value);
-      if (!genders.includes("Femenino") || !genders.includes("Masculino")) {
-        showFormMessage("Para vóley mixto, registra participantes femeninos y masculinos.");
-        valid = false;
-      }
-    }
+    const albumImage = $('#team-album-image');
+    const jerseyImage = $('#team-jersey-image');
+    albumImage.src = team.album;
+    albumImage.alt = team.albumAlt;
+    jerseyImage.src = team.jersey;
+    jerseyImage.alt = team.jerseyAlt;
 
-    if (!form.elements.consent.checked) {
-      showFormMessage("Debes aceptar las bases y confirmar la veracidad de los datos.");
-      valid = false;
-    }
-
-    if (!valid) form.querySelector(".invalid")?.focus();
-    return valid;
+    $('#team-album-link').href = team.album;
+    $('#team-jersey-link').href = team.jersey;
   }
 
-  function createRequestId() {
-    if (window.crypto?.randomUUID) return window.crypto.randomUUID();
-    return `req-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+  function getComments() {
+    const key = 'anin_comment_wall_v1';
+    const current = JSON.parse(localStorage.getItem(key) || 'null');
+    if (current && Array.isArray(current) && current.length) return current;
+    localStorage.setItem(key, JSON.stringify(seedComments));
+    return [...seedComments];
   }
 
-  function getPayload() {
-    return {
-      requestId: createRequestId(),
-      submittedAtClient: new Date().toISOString(),
-      event: "Copa ANIN 2026",
-      eventDetails: {
-        date: eventDateLabel,
-        time: eventTimeLabel,
-        venue: venueLabel,
-        mapsUrl,
-        note: venueNote
-      },
-      source: window.location.href,
-      sport: form.elements.sport.value,
-      teamName: form.elements.teamName.value.trim(),
-      organization: form.elements.organization.value.trim(),
-      jersey: form.elements.jersey.value.trim(),
-      delegate: {
-        name: form.elements.delegate.value.trim(),
-        phone: form.elements.phone.value.trim(),
-        email: form.elements.email.value.trim().toLowerCase()
-      },
-      players: $$(".player-row", playersList).map((row) => ({
-        name: $("[data-field='name']", row).value.trim(),
-        dni: $("[data-field='dni']", row).value.trim(),
-        gender: $("[data-field='gender']", row).value
-      }))
-    };
+  function saveComments(comments) {
+    localStorage.setItem('anin_comment_wall_v1', JSON.stringify(comments));
   }
 
-  function ensureTransportFrame() {
-    let frame = $("#registration-transport-frame");
-    if (!frame) {
-      frame = document.createElement("iframe");
-      frame.id = "registration-transport-frame";
-      frame.name = "registration-transport-frame";
-      frame.hidden = true;
-      frame.setAttribute("aria-hidden", "true");
-      document.body.append(frame);
-    }
-    return frame;
-  }
-
-  function submitRegistration(payload) {
-    return new Promise((resolve, reject) => {
-      ensureTransportFrame();
-      const transportForm = document.createElement("form");
-      transportForm.method = "POST";
-      transportForm.action = endpoint;
-      transportForm.target = "registration-transport-frame";
-      transportForm.hidden = true;
-
-      const input = document.createElement("input");
-      input.type = "hidden";
-      input.name = "payload";
-      input.value = JSON.stringify(payload);
-      transportForm.append(input);
-      document.body.append(transportForm);
-
-      let settled = false;
-      const cleanup = () => {
-        window.removeEventListener("message", onMessage);
-        transportForm.remove();
-        clearTimeout(timer);
-      };
-
-      const finish = (callback, value) => {
-        if (settled) return;
-        settled = true;
-        cleanup();
-        callback(value);
-      };
-
-      const onMessage = (event) => {
-        const data = event.data;
-        if (!data || data.source !== "COPA_ANIN_API" || data.requestId !== payload.requestId) return;
-        if (data.ok) finish(resolve, data);
-        else finish(reject, new Error(data.error || "El servidor rechazó la inscripción."));
-      };
-
-      window.addEventListener("message", onMessage);
-      const timer = window.setTimeout(() => {
-        finish(reject, new Error("El servidor no confirmó la inscripción dentro del tiempo esperado."));
-      }, REQUEST_TIMEOUT_MS);
-
-      transportForm.submit();
+  function formatDate(value) {
+    const date = new Date(value);
+    return date.toLocaleString('es-PE', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
     });
   }
 
-  function createReferenceCode() {
-    const timePart = Date.now().toString(36).toUpperCase().slice(-6);
-    const randomPart = Math.random().toString(36).toUpperCase().replace(/[^A-Z0-9]/g, "").slice(2, 5);
-    return `ANIN-${timePart}${randomPart}`;
+  function renderComments() {
+    const list = $('#comments-list');
+    const count = $('#comment-count');
+    if (!list || !count) return;
+
+    const comments = getComments().slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    count.textContent = `${comments.length} comentario${comments.length === 1 ? '' : 's'}`;
+
+    list.innerHTML = comments.map((item) => `
+      <article class="comment-card">
+        <div class="comment-card-head">
+          <strong>${escapeHtml(item.author)}</strong>
+          <span>${escapeHtml(item.team)}</span>
+        </div>
+        <p>${escapeHtml(item.message)}</p>
+        <small>${formatDate(item.createdAt)}</small>
+      </article>
+    `).join('');
   }
 
-  function buildWhatsAppMessage(payload, code, centralConfirmed) {
-    const players = payload.players.map((player, index) =>
-      `${index + 1}. ${player.name} | DNI ${player.dni} | ${player.gender}`
-    ).join("\n");
-
-    return [
-      centralConfirmed
-        ? "*COPA ANIN 2026 – INSCRIPCIÓN CONFIRMADA*"
-        : "*COPA ANIN 2026 – SOLICITUD DE INSCRIPCIÓN*",
-      "",
-      `*Código:* ${code}`,
-      "",
-      "*DATOS DEL EVENTO*",
-      `*Fecha:* ${eventDateLabel}`,
-      `*Horario:* ${eventTimeLabel}`,
-      `*Cancha:* ${venueLabel}`,
-      `*Ubicación:* ${mapsUrl}`,
-      `*Importante:* ${venueNote}`,
-      "",
-      `*Disciplina:* ${payload.sport}`,
-      `*Equipo:* ${payload.teamName}`,
-      `*Área / institución:* ${payload.organization || "No indicada"}`,
-      `*Color de camiseta:* ${payload.jersey}`,
-      "",
-      "*Delegado:*",
-      payload.delegate.name,
-      `Celular: ${payload.delegate.phone}`,
-      `Correo: ${payload.delegate.email}`,
-      "",
-      `*Jugadores (${payload.players.length}):*`,
-      players,
-      "",
-      centralConfirmed
-        ? "Registro guardado en la base central de la Copa ANIN 2026."
-        : "Solicito confirmar la recepción de esta inscripción por este mismo medio."
-    ].join("\n");
+  function escapeHtml(text) {
+    return String(text)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
   }
 
-  function getWhatsAppUrl(payload, code, centralConfirmed) {
-    const message = buildWhatsAppMessage(payload, code, centralConfirmed);
-    return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-  }
+  function setupCommentsForm() {
+    const form = $('#comments-form');
+    const message = $('#comment-message');
+    if (!form || !message) return;
 
-  function configureWhatsAppButton(payload, code, centralConfirmed) {
-    const url = getWhatsAppUrl(payload, code, centralConfirmed);
-    const button = $("#whatsapp-confirmation");
-    button.href = url;
-    button.hidden = !whatsappNumber;
-    return url;
-  }
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      message.classList.remove('show');
+      const author = form.author.value.trim();
+      const team = form.team.value.trim();
+      const comment = form.message.value.trim();
 
-  function openModal(payload, code, centralConfirmed, serverError = "") {
-    $("#registration-code").textContent = code;
-    configureWhatsAppButton(payload, code, centralConfirmed);
-
-    const status = $("#modal-status");
-    const title = $("#modal-title");
-    const description = $("#modal-description");
-
-    if (centralConfirmed) {
-      status.textContent = "REGISTRO CENTRAL CONFIRMADO";
-      title.innerHTML = "¡YA ESTÁN<br>EN EL JUEGO!";
-      description.textContent = "La inscripción fue guardada correctamente. Conserva el código y envía la constancia al WhatsApp oficial.";
-    } else {
-      status.textContent = "ENVÍO POR WHATSAPP";
-      title.innerHTML = "INSCRIPCIÓN<br>LISTA PARA ENVIAR";
-      description.textContent = serverError
-        ? "El registro central no respondió, pero la inscripción no se perderá. Presiona Enviar en WhatsApp para remitirla al 942 899 919."
-        : "WhatsApp debe abrirse con todos los datos. Presiona Enviar para completar la inscripción al 942 899 919.";
-    }
-
-    modal.classList.add("open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("modal-open");
-    $("#whatsapp-confirmation", modal).focus();
-  }
-
-  function closeModal() {
-    modal.classList.remove("open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("modal-open");
-  }
-
-  function resetForm() {
-    form.reset();
-    playersList.innerHTML = "";
-    for (let i = 0; i < MIN_PLAYERS; i += 1) addPlayer();
-  }
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-    if (!validateForm()) return;
-
-    const button = $(".submit-button", form);
-    const original = button.innerHTML;
-    const payload = getPayload();
-    const fallbackCode = createReferenceCode();
-
-    if (!endpoint) {
-      try {
-        localStorage.setItem("anin_last_registration_draft", JSON.stringify({
-          code: fallbackCode,
-          savedAt: new Date().toISOString(),
-          payload
-        }));
-      } catch (storageError) {
-        console.warn("No se pudo guardar la copia temporal.", storageError);
+      if (author.length < 2 || !team || comment.length < 8) {
+        message.textContent = 'Completa tu nombre, el equipo y un comentario de al menos 8 caracteres.';
+        message.classList.add('show');
+        return;
       }
 
-      openModal(payload, fallbackCode, false);
-      const whatsappUrl = getWhatsAppUrl(payload, fallbackCode, false);
-      const opened = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-      if (!opened) {
-        showFormMessage("El navegador bloqueó la apertura automática. Pulsa el botón ENVIAR AL WHATSAPP dentro de la ventana de confirmación.");
-      }
-      return;
-    }
-
-    button.disabled = true;
-    button.innerHTML = "<span>GUARDANDO EN EL REGISTRO CENTRAL…</span><i>•••</i>";
-
-    try {
-      const result = await submitRegistration(payload);
-      openModal(payload, result.code, true);
-      resetForm();
-    } catch (error) {
-      console.error(error);
-      openModal(payload, fallbackCode, false, error.message || "El servidor no respondió.");
-    } finally {
-      button.disabled = false;
-      button.innerHTML = original;
-    }
+      const comments = getComments();
+      comments.push({
+        author,
+        team,
+        message: comment,
+        createdAt: new Date().toISOString()
+      });
+      saveComments(comments);
+      form.reset();
+      message.textContent = 'Tu comentario fue publicado correctamente.';
+      message.classList.add('show');
+      renderComments();
+    });
   }
 
-  $("#add-player").addEventListener("click", addPlayer);
-  playersList.addEventListener("click", (event) => {
-    const button = event.target.closest(".remove-player");
-    if (!button) return;
-    button.closest(".player-row").remove();
-    updatePlayerRows();
+  function setupMenu() {
+    const toggle = $('.menu-toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', (event) => {
+      const open = document.body.classList.toggle('menu-open');
+      event.currentTarget.setAttribute('aria-expanded', String(open));
+    });
+
+    $$('.main-nav a').forEach((link) => link.addEventListener('click', () => {
+      document.body.classList.remove('menu-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+  }
+
+  $$('.team-button').forEach((button) => {
+    button.addEventListener('click', () => activateTeam(button.dataset.team));
   });
-  playersList.addEventListener("input", (event) => {
-    if (event.target.matches("[data-field='dni']")) {
-      event.target.value = event.target.value.replace(/\D/g, "").slice(0, 8);
-    }
-    clearFieldError(event.target);
-  });
-  form.addEventListener("input", (event) => clearFieldError(event.target));
-  form.addEventListener("submit", handleSubmit);
 
-  $$(".choose-sport").forEach((button) => button.addEventListener("click", () => {
-    const radio = $(`input[name='sport'][value='${button.dataset.sport}']`, form);
-    if (radio) radio.checked = true;
-    $("#inscripcion").scrollIntoView({ behavior: "smooth" });
-  }));
-
-  $(".menu-toggle").addEventListener("click", (event) => {
-    const open = document.body.classList.toggle("menu-open");
-    event.currentTarget.setAttribute("aria-expanded", String(open));
-  });
-  $$(".main-nav a").forEach((link) => link.addEventListener("click", () => {
-    document.body.classList.remove("menu-open");
-    $(".menu-toggle").setAttribute("aria-expanded", "false");
-  }));
-
-  $(".modal-close").addEventListener("click", closeModal);
-  $(".modal-done").addEventListener("click", closeModal);
-  $(".modal-backdrop").addEventListener("click", closeModal);
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && modal.classList.contains("open")) closeModal();
-  });
-  window.addEventListener("scroll", updateHeader, { passive: true });
-
-  for (let i = 0; i < MIN_PLAYERS; i += 1) addPlayer();
   updateCountdown();
   setInterval(updateCountdown, 60000);
   updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
   setupReveal();
+  setupMenu();
+  activateTeam('cci');
+  setupCommentsForm();
+  renderComments();
 })();
