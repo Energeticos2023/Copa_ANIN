@@ -147,3 +147,22 @@ footer{background:#050f20;color:#fff;padding:55px 0 20px}.footer-grid{display:gr
 @media(max-width:1100px){.real-gallery{grid-template-columns:repeat(3,1fr)}.gallery-photo-card:nth-child(14){grid-column:auto;grid-row:auto}}
 @media(max-width:980px){.memory-hero-grid{grid-template-columns:1fr}.hero-memory-card{margin:0 0 55px;transform:none}.real-team-grid{grid-template-columns:1fr}.real-gallery{grid-template-columns:repeat(2,1fr)}.gallery-photo-card:nth-child(1),.gallery-photo-card:nth-child(7){grid-column:span 2;grid-row:auto}}
 @media(max-width:760px){.hero-memory-bg{background-position:60% center}.hero-memory-card{padding:8px}.hero-memory-caption{left:20px;right:20px;bottom:20px}.memory-seal{width:100%;align-items:flex-start}.gratitude-message{padding:36px 24px 28px}.gratitude-quote{left:8px;top:0}.gratitude-message p{font-size:.88rem}.real-team-card{grid-template-columns:1fr}.real-team-card img{height:260px}.real-gallery{grid-template-columns:1fr}.gallery-photo-card,.gallery-photo-card:nth-child(1),.gallery-photo-card:nth-child(7){grid-column:auto;grid-row:auto;aspect-ratio:4/3}.gallery-photo-card>span{opacity:1;transform:none}.photo-lightbox-card{width:100%;padding:54px 8px 70px}.photo-lightbox-card img{border-width:3px}.photo-lightbox-card p{left:20px;right:20px;bottom:18px}.photo-lightbox-nav{top:auto;bottom:10px;height:44px;width:44px;transform:none}.photo-lightbox-prev{left:12px}.photo-lightbox-next{right:12px}.photo-lightbox-close{right:12px;top:8px}.closing-section{padding:70px 0}.closing-card h2{font-size:4rem}}
+
+/* Versión conmemorativa sin logotipo institucional */
+.brand-mark-neutral{display:grid!important;grid-template-columns:1fr;align-content:center;justify-items:center;background:linear-gradient(145deg,#ed1c2e,#8d0c19)!important;color:#fff!important;border:1px solid rgba(255,255,255,.35);line-height:.75;padding:0!important;font-family:var(--display);text-transform:uppercase;box-shadow:inset 0 0 0 3px rgba(255,255,255,.08)}
+.brand-mark-neutral b{font-size:1.15rem;letter-spacing:.04em}
+.brand-mark-neutral small{font-size:.48rem!important;letter-spacing:.12em!important;color:#fff!important;margin-top:4px!important}
+.team-showcase-media-single{grid-template-columns:1fr!important}
+.team-showcase-media-single .team-card-media{max-width:780px;margin-inline:auto}
+.identity-disclaimer{padding:16px 0 0;border-top:1px solid #1d2a3e;text-align:center;color:#718097;font-size:.58rem;letter-spacing:.04em}
+@media (max-width:760px){.identity-disclaimer{padding:16px 10px 0;line-height:1.6}}
+
+/* Sponsor ENERGETICOS */
+.sponsor-ribbon{margin-top:20px;display:inline-flex;flex-direction:column;gap:4px;padding:14px 18px;border-left:4px solid var(--gold);background:rgba(255,255,255,.08);backdrop-filter:blur(8px);max-width:380px}
+.sponsor-ribbon span{font-size:.62rem;letter-spacing:.18em;color:#ffd77b;font-weight:800}
+.sponsor-ribbon strong{font:800 1.4rem/1 var(--display);letter-spacing:.05em;color:#fff;text-transform:uppercase}
+.sponsor-ribbon small{color:#d1d8e4;font-size:.74rem}
+.sponsor-section{margin-top:34px}.sponsor-card{background:linear-gradient(135deg,#08182f 0%,#102746 100%);color:#fff;padding:28px 30px;border-left:5px solid var(--gold);box-shadow:var(--shadow)}
+.sponsor-card h3{font-size:2.6rem;line-height:.95;margin:8px 0 12px}.sponsor-card p{max-width:760px;margin:0;color:#d8dfeb}
+.footer-sponsor{display:inline-block;margin-top:6px;color:#d9a923;font-size:.75rem;font-weight:700;letter-spacing:.06em}
+@media (max-width:760px){.sponsor-ribbon{max-width:none;width:100%}.sponsor-card{padding:22px}.sponsor-card h3{font-size:2.2rem}}

@@ -4,16 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#08182f">
-  <meta name="description" content="Copa ANIN 2026 · Memoria oficial del campeonato realizado con éxito en la cancha Balón Fuego, con la participación de CCI Club, Real Covacha, JYS Equipo Prime y Los Volcánicos de ANIN.">
+  <meta name="description" content="Copa ANIN 2026 · Memoria fotográfica del campeonato realizado con éxito en la cancha Balón Fuego, con la participación de CCI Club, Real Covacha, JYS Equipo Prime y Los Volcánicos de ANIN.">
   <meta property="og:title" content="Copa ANIN 2026 · Una noche para recordar">
   <meta property="og:description" content="Revive la jornada deportiva, conoce a los cuatro equipos participantes y recorre la galería de fotografías reales del campeonato.">
   <meta property="og:image" content="assets/images/campeonato-real/hero-campeonato.webp">
   <title>Copa ANIN 2026 · Memoria del Campeonato</title>
-  <link rel="icon" href="assets/images/logo-anin.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=memoria-2026-1">
+  <link rel="stylesheet" href="assets/css/styles.css?v=memoria-sin-logo-2026-3">
 </head>
 <body class="post-event-page">
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -21,7 +20,7 @@
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="#inicio" aria-label="Copa ANIN, inicio">
-        <span class="brand-mark"><img src="assets/images/logo-anin.png" alt="ANIN"></span>
+        <span class="brand-mark brand-mark-neutral" aria-hidden="true"><b>CA</b><small>26</small></span>
         <span><b>COPA ANIN</b><small>Arequipa · 2026</small></span>
       </a>
       <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
@@ -49,10 +48,11 @@
             <a class="button button-ghost" href="#agradecimiento">Leer agradecimiento <span>↓</span></a>
           </div>
           <div class="memory-seal"><span>✓</span><p><small>EVENTO CONCLUIDO</small><b>Gracias por ser parte de la Copa ANIN 2026</b></p></div>
+          <div class="sponsor-ribbon"><span>AUSPICIADOR</span><strong>ENERGÉTICOS</strong><small>Impulsando iniciativas que integran a las personas.</small></div>
         </div>
         <div class="hero-memory-card reveal delay-1">
           <img src="assets/images/campeonato-real/foto-01.webp" alt="Fotografía grupal de participantes de la Copa ANIN 2026">
-          <div class="hero-memory-caption"><span>MEMORIA OFICIAL</span><b>La integración fue nuestra mayor victoria.</b></div>
+          <div class="hero-memory-caption"><span>MEMORIA FOTOGRÁFICA</span><b>La integración fue nuestra mayor victoria.</b></div>
         </div>
       </div>
       <div class="event-strip memory-strip">
@@ -93,6 +93,13 @@
             <div><span>ANIN</span><h3>LOS VOLCÁNICOS DE ANIN</h3><p>Gracias por representar a ANIN con orgullo, unión y un gran espíritu de integración.</p></div>
           </article>
         </div>
+        <div class="sponsor-section reveal">
+          <div class="sponsor-card">
+            <span class="kicker">AUSPICIADOR</span>
+            <h3>ENERGÉTICOS</h3>
+            <p>Agradecemos el respaldo de <strong>ENERGÉTICOS</strong> por sumarse a esta jornada deportiva y contribuir al éxito de esta experiencia de integración.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -100,7 +107,7 @@
       <div class="container">
         <div class="section-heading reveal">
           <div><span class="kicker">DE LA EXPECTATIVA A LA CANCHA REAL</span><h2>CONOCE LA HISTORIA DE CADA EQUIPO</h2></div>
-          <p>Selecciona un equipo para ver su fotografía real, su álbum previo al campeonato y la identidad que llevó a la cancha.</p>
+          <p>Selecciona un equipo para ver su fotografía real, su plantel y la identidad deportiva que llevó a la cancha.</p>
         </div>
         <div class="team-buttons reveal delay-1" role="tablist" aria-label="Equipos participantes">
           <button class="team-button is-active" type="button" data-team="cci" role="tab" aria-selected="true">CCI CLUB<small>Supervisión · 10 jugadores</small></button>
@@ -110,7 +117,7 @@
         </div>
         <article class="team-showcase reveal" id="team-showcase" aria-live="polite">
           <div class="team-showcase-copy">
-            <span class="team-badge" id="team-league">Participación oficial</span>
+            <span class="team-badge" id="team-league">Participación en la jornada</span>
             <h3 id="team-title">CCI CLUB</h3>
             <p class="team-lead" id="team-lead">Orden, identidad y ambición que se hicieron presentes en la cancha.</p>
             <div class="team-meta" id="team-meta"></div>
@@ -118,12 +125,10 @@
             <div class="team-roster" id="team-roster" aria-label="Plantel del equipo"></div>
             <div class="team-cta-row">
               <a class="button button-primary" id="team-real-link" href="assets/images/campeonato-real/foto-11.webp" target="_blank" rel="noopener">Abrir fotografía real <span>↗</span></a>
-              <a class="button button-dark" id="team-album-link" href="assets/images/team-cci-album.png" target="_blank" rel="noopener">Ver álbum previo <span>↗</span></a>
             </div>
           </div>
-          <div class="team-showcase-media">
+          <div class="team-showcase-media team-showcase-media-single">
             <figure class="team-card-media real-photo-media"><img id="team-real-image" src="assets/images/campeonato-real/foto-11.webp" alt="Fotografía real de CCI Club"><figcaption>Fotografía real del campeonato</figcaption></figure>
-            <figure class="team-card-media"><img id="team-album-image" src="assets/images/team-cci-album.png" alt="Álbum oficial de CCI Club"><figcaption>Álbum previo al campeonato</figcaption></figure>
           </div>
         </article>
       </div>
@@ -194,11 +199,11 @@
 
   <footer>
     <div class="container footer-grid">
-      <a class="brand footer-brand" href="#inicio"><span class="brand-mark"><img src="assets/images/logo-anin.png" alt="ANIN"></span><span><b>COPA ANIN</b><small>Arequipa · 2026</small></span></a>
-      <p>Memoria oficial del campeonato institucional<br><strong>Gracias a los cuatro equipos participantes</strong></p>
+      <a class="brand footer-brand" href="#inicio"><span class="brand-mark brand-mark-neutral" aria-hidden="true"><b>CA</b><small>26</small></span><span><b>COPA ANIN</b><small>Arequipa · 2026</small></span></a>
+      <p>Memoria fotográfica del amistoso deportivo 2026<br><strong>Gracias a los cuatro equipos participantes</strong><br><small class="footer-sponsor">Auspiciador: ENERGÉTICOS</small></p>
       <div class="footer-links"><a href="#agradecimiento">Agradecimiento</a><a href="#galeria">Galería</a><a href="#inicio">Volver arriba ↑</a></div>
     </div>
-    <div class="container footer-bottom"><span>© 2026 Copa ANIN. Todos los derechos reservados.</span><span>Cancha Balón Fuego · Arequipa</span></div>
+    <div class="container footer-bottom"><span>© 2026 Copa ANIN. Memoria deportiva de integración.</span><span>Cancha Balón Fuego · Arequipa</span></div><div class="container identity-disclaimer">Sitio conmemorativo no oficial. No utiliza el logotipo ni la identidad gráfica institucional de ANIN.</div>
   </footer>
 
   <div class="photo-lightbox" id="photo-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption">
@@ -212,6 +217,6 @@
     </div>
   </div>
 
-  <script src="assets/js/app.js?v=memoria-2026-1"></script>
+  <script src="assets/js/app.js?v=memoria-sin-logo-2026-3"></script>
 </body>
 </html>

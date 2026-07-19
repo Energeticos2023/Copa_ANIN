@@ -5,7 +5,7 @@
   const teams = {
     cci: {
       name: 'CCI CLUB',
-      league: 'Supervisión · Participación oficial',
+      league: 'Supervisión · Participación en la jornada',
       lead: 'Orden, identidad y ambición que se hicieron presentes en la cancha.',
       meta: ['Área: Supervisión', 'Jugadores inscritos: 10', 'Color representativo: Azul', 'Gracias por su participación'],
       highlights: [
@@ -25,15 +25,12 @@
         ['Phool Camacho Zorogastua','El Lautaro','Instinto de área y garra.'],
         ['Alexis Tito Machaca','El Cristiano','Salto, potencia y hambre de gol.']
       ],
-      album: 'assets/images/team-cci-album.png',
-      albumLink: 'assets/images/team-cci-album.png',
       realPhoto: 'assets/images/campeonato-real/foto-11.webp',
       realAlt: 'Fotografía real de CCI Club durante la Copa ANIN 2026',
-      albumAlt: 'Álbum previo de CCI Club'
     },
     real: {
       name: 'REAL COVACHA',
-      league: 'JYS · Participación oficial',
+      league: 'JYS · Participación en la jornada',
       lead: 'Energía, compañerismo y una presencia que animó cada momento de la jornada.',
       meta: ['Área: JYS', 'Jugadores inscritos: 10', 'Color representativo: Amarillo', 'Gracias por su participación'],
       highlights: [
@@ -53,15 +50,12 @@
         ['José Bernardo Mocarro Willis','El Lautaro','Cazador del gol y presión constante.'],
         ['Karol Quispe Cabrera','El Vinícius','Uno contra uno y chispa pura.']
       ],
-      album: 'assets/images/team-real-album.png',
-      albumLink: 'assets/images/team-real-album.png',
       realPhoto: 'assets/images/campeonato-real/foto-05.webp',
       realAlt: 'Fotografía real de Real Covacha durante la Copa ANIN 2026',
-      albumAlt: 'Álbum previo de Real Covacha'
     },
     jys: {
       name: 'JYS EQUIPO PRIME',
-      league: 'JYS · Participación oficial',
+      league: 'JYS · Participación en la jornada',
       lead: 'Entrega, alegría y participación activa en una noche de auténtica confraternidad.',
       meta: ['Área: JYS', 'Jugadores inscritos: 10', 'Color representativo: Amarillo', 'Gracias por su participación'],
       highlights: [
@@ -81,15 +75,12 @@
         ['Marco Antonio Salazar Yancari','El Musiala','Gambeta, cambio de ritmo y frescura.'],
         ['Paulo César Salazar García','El Lewandowski','Definición, oficio y presencia.']
       ],
-      album: 'assets/images/team-jys-album.png',
-      albumLink: 'assets/images/team-jys-album.png',
       realPhoto: 'assets/images/campeonato-real/foto-09.webp',
       realAlt: 'Fotografía real de JYS Equipo Prime durante la Copa ANIN 2026',
-      albumAlt: 'Álbum previo de JYS Equipo Prime'
     },
     anin: {
       name: 'LOS VOLCÁNICOS DE ANIN',
-      league: 'ANIN · Participación oficial',
+      league: 'ANIN · Participación en la jornada',
       lead: 'Orgullo institucional, unión y entusiasmo para representar a ANIN en la cancha.',
       meta: ['Área: ANIN', 'Jugadores inscritos: 10', 'Color representativo: Azul y blanco', 'Gracias por su participación'],
       highlights: [
@@ -109,11 +100,8 @@
         ['Henry Mamani Contreras','El Motor','Energía, recorrido y conexión permanente con el juego.'],
         ['David Polar Poma','El Iniesta','Pausa, lectura y pase entre líneas para darle sentido a cada ataque.']
       ],
-      album: 'assets/images/team-anin-album.png',
-      albumLink: 'album-anin.html',
       realPhoto: 'assets/images/campeonato-real/foto-03.webp',
       realAlt: 'Fotografía real de Los Volcánicos de ANIN durante la Copa ANIN 2026',
-      albumAlt: 'Álbum previo de Los Volcánicos de ANIN'
     }
   };
 
@@ -152,7 +140,7 @@
   ];
 
   const seedComments = [
-    { author: 'Organización Copa ANIN', team: 'COPA ANIN 2026', message: 'Gracias a los cuatro equipos por hacer posible una jornada de integración, compañerismo y sana competencia.', createdAt: '2026-07-18T09:00:00-05:00' },
+    { author: 'Organización del campeonato', team: 'COPA ANIN 2026', message: 'Gracias a los cuatro equipos por hacer posible una jornada de integración, compañerismo y sana competencia.', createdAt: '2026-07-18T09:00:00-05:00' },
     { author: 'Afición ANIN', team: 'LOS VOLCÁNICOS DE ANIN', message: 'Una noche para recordar. Felicitaciones a todos por la participación y el espíritu deportivo.', createdAt: '2026-07-18T09:15:00-05:00' },
     { author: 'Colegas de JYS', team: 'JYS EQUIPO PRIME', message: 'Excelente iniciativa. Gracias por promover la integración entre todos los equipos del proyecto.', createdAt: '2026-07-18T09:25:00-05:00' },
     { author: 'Supervisión', team: 'CCI CLUB', message: 'Felicitaciones a todos los participantes. La confraternidad fue la verdadera ganadora.', createdAt: '2026-07-18T09:40:00-05:00' }
@@ -215,13 +203,9 @@
     `).join('');
 
     const realImage = $('#team-real-image');
-    const albumImage = $('#team-album-image');
     realImage.src = team.realPhoto;
     realImage.alt = team.realAlt;
-    albumImage.src = team.album;
-    albumImage.alt = team.albumAlt;
     $('#team-real-link').href = team.realPhoto;
-    $('#team-album-link').href = team.albumLink || team.album;
   }
 
   function renderGallery(filter = 'all') {
