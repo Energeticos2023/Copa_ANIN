@@ -1,6 +1,6 @@
-# Amistoso Institucional 2026
+# Copa ANIN 2026
 
-Sitio web informativo para un encuentro amistoso por aniversario institucional, organizado por UDE Arequipa.
+Aplicación web para la inscripción al Campeonato Relámpago por el aniversario de la Autoridad Nacional de Infraestructura (ANIN), organizado por UDE Arequipa.
 
 ## Ejecutar localmente
 
@@ -26,4 +26,5 @@ La aplicación funciona inmediatamente y conserva las inscripciones en el navega
 - `assets/css/styles.css`: sistema visual responsive.
 - `assets/js/app.js`: validación, inscripción y experiencia interactiva.
 - `assets/js/config.js`: configuración del endpoint.
-- `assets/docs/`: documentos históricos no enlazados desde la versión amistosa.
+- `assets/docs/bases-campeonato-anin-2026.pdf`: bases oficiales descargables.
+

@@ -5,18 +5,13 @@
   const teams = {
     cci: {
       name: 'CCI CLUB',
-      league: 'Supervisión · Plantel oficial',
-      lead: 'Orden, identidad y compañerismo para disfrutar una gran jornada deportiva.',
-      meta: [
-        'Área: Supervisión',
-        'Jugadores: 10',
-        'Figura: Pedro Huaraca “El Messi”',
-        'Camiseta: Azul con dorado'
-      ],
+      league: 'Supervisión · Participación oficial',
+      lead: 'Orden, identidad y ambición que se hicieron presentes en la cancha.',
+      meta: ['Área: Supervisión', 'Jugadores inscritos: 10', 'Color representativo: Azul', 'Gracias por su participación'],
       highlights: [
-        'Un plantel equilibrado que mezcla pausa, visión y sacrificio colectivo.',
-        'Pedro Huaraca lidera la expectativa con el sello de “El Messi”.',
-        'CCI CLUB quiere imponer orden, inteligencia táctica y ambición competitiva.'
+        'CCI Club aportó disciplina, compañerismo y una gran actitud competitiva.',
+        'Su participación fortaleció la confraternidad entre la Supervisión y todos los equipos del proyecto.',
+        'Agradecemos a su delegado y a cada jugador por ser parte de esta jornada institucional.'
       ],
       roster: [
         ['Pedro Huaraca Rojas','El Messi','Visión total, gambeta corta y definición inteligente.'],
@@ -32,24 +27,19 @@
       ],
       album: 'assets/images/team-cci-album.png',
       albumLink: 'assets/images/team-cci-album.png',
-      jersey: 'assets/images/team-cci-jersey.png',
-      albumAlt: 'Álbum oficial de CCI CLUB',
-      jerseyAlt: 'Camiseta oficial de CCI CLUB'
+      realPhoto: 'assets/images/campeonato-real/foto-11.webp',
+      realAlt: 'Fotografía real de CCI Club durante la Copa ANIN 2026',
+      albumAlt: 'Álbum previo de CCI Club'
     },
     real: {
       name: 'REAL COVACHA',
-      league: 'JYS · Plantel oficial',
-      lead: 'Rugido, velocidad y contundencia en un equipo hecho para competir con garra.',
-      meta: [
-        'Área: JYS',
-        'Jugadores: 10',
-        'Figura: Mario Flores “El Haaland”',
-        'Camiseta: Dorado con negro'
-      ],
+      league: 'JYS · Participación oficial',
+      lead: 'Energía, compañerismo y una presencia que animó cada momento de la jornada.',
+      meta: ['Área: JYS', 'Jugadores inscritos: 10', 'Color representativo: Amarillo', 'Gracias por su participación'],
       highlights: [
-        'Su identidad visual se inspira en la fuerza del león y el espíritu ganador.',
-        'Mario Flores asume el rol de “El Haaland”, sinónimo de potencia y gol.',
-        'Real Covacha promete intensidad, remate fuerte y una actitud feroz.'
+        'Real Covacha aportó entusiasmo, garra y un gran espíritu de integración.',
+        'Su equipo compartió la cancha con respeto y alegría, haciendo más especial la jornada.',
+        'Agradecemos a su delegado y a todos sus integrantes por sumarse a la Copa ANIN 2026.'
       ],
       roster: [
         ['Ronald Altamirano Echevarria','El Dibu','Seguridad, carácter y reflejos.'],
@@ -65,24 +55,19 @@
       ],
       album: 'assets/images/team-real-album.png',
       albumLink: 'assets/images/team-real-album.png',
-      jersey: 'assets/images/team-real-jersey.png',
-      albumAlt: 'Álbum oficial de REAL COVACHA',
-      jerseyAlt: 'Camiseta oficial de REAL COVACHA'
+      realPhoto: 'assets/images/campeonato-real/foto-05.webp',
+      realAlt: 'Fotografía real de Real Covacha durante la Copa ANIN 2026',
+      albumAlt: 'Álbum previo de Real Covacha'
     },
     jys: {
       name: 'JYS EQUIPO PRIME',
-      league: 'JYS · Plantel oficial',
-      lead: 'Intensidad, disciplina y compañerismo para animar el encuentro amistoso.',
-      meta: [
-        'Área: JYS',
-        'Jugadores: 10',
-        'Figura: Abner Illatopa “El Yamal”',
-        'Camiseta: Amarillo premium'
-      ],
+      league: 'JYS · Participación oficial',
+      lead: 'Entrega, alegría y participación activa en una noche de auténtica confraternidad.',
+      meta: ['Área: JYS', 'Jugadores inscritos: 10', 'Color representativo: Amarillo', 'Gracias por su participación'],
       highlights: [
-        'Abner Illatopa encarna la rebeldía, el descaro y la frescura de “El Yamal”.',
-        'Es un plantel moderno, agresivo y con una propuesta dinámica.',
-        'JYS Equipo Prime llega con liderazgo, pase filtrado y talento joven.'
+        'JYS Equipo Prime se sumó con energía, disciplina y un gran sentido de equipo.',
+        'Su presencia contribuyó al ambiente de amistad y sana competencia que caracterizó el campeonato.',
+        'Agradecemos a su delegado y a cada jugador por compartir esta experiencia institucional.'
       ],
       roster: [
         ['Abner Jesús Illatopa Chamorro','El Yamal','Descaro, talento y creatividad precoz.'],
@@ -98,25 +83,19 @@
       ],
       album: 'assets/images/team-jys-album.png',
       albumLink: 'assets/images/team-jys-album.png',
-      jersey: 'assets/images/team-jys-jersey.png',
-      albumAlt: 'Álbum oficial de JYS EQUIPO PRIME',
-      jerseyAlt: 'Camiseta oficial de JYS EQUIPO PRIME'
+      realPhoto: 'assets/images/campeonato-real/foto-09.webp',
+      realAlt: 'Fotografía real de JYS Equipo Prime durante la Copa ANIN 2026',
+      albumAlt: 'Álbum previo de JYS Equipo Prime'
     },
     anin: {
-      name: 'LOS VOLCÁNICOS',
-      league: 'Club ANIN · Plantel confirmado',
-      lead: 'Energía, orgullo azul y personalidad para animar la jornada amistosa.',
-      meta: [
-        'Club: ANIN',
-        'Jugadores: 11',
-        'Figura: Rafael Zeña “El Mbappé”',
-        'Camiseta: Azul volcánico'
-      ],
+      name: 'LOS VOLCÁNICOS DE ANIN',
+      league: 'ANIN · Participación oficial',
+      lead: 'Orgullo institucional, unión y entusiasmo para representar a ANIN en la cancha.',
+      meta: ['Área: ANIN', 'Jugadores inscritos: 10', 'Color representativo: Azul y blanco', 'Gracias por su participación'],
       highlights: [
-        'José Rafael Zeña Peche asume el rol de “El Mbappé”, explosivo y decisivo.',
-        'Su estética volcánica transmite energía, coraje y pasión por competir.',
-        'Juan Antonio Cori Mamani es “El Guerrero”; Henry Mamani Contreras, “El Motor”; David Polar Poma aporta pausa y visión; y Jaime Henry Quea Ccama se suma al plantel.',
-        'Los Volcánicos llegan para compartir una jornada de integración con identidad y fuego interno.'
+        'Los Volcánicos de ANIN representaron a la institución con compromiso y espíritu de equipo.',
+        'Su participación reafirmó la importancia de crear espacios de integración más allá de las actividades laborales.',
+        'Agradecemos a todos los integrantes que hicieron posible la presencia de ANIN en esta jornada.'
       ],
       roster: [
         ['Felipe Sánchez Quispe','El Courtois','Altura, manos firmes y seguridad.'],
@@ -128,34 +107,67 @@
         ['Juan Antonio Cori Mamani','El Guerrero','Coraje, entrega y lucha hasta el final.'],
         ['José Antonio Palomino Puma','El Julián','Presión, movilidad y oportunismo.'],
         ['Henry Mamani Contreras','El Motor','Energía, recorrido y conexión permanente con el juego.'],
-        ['David Polar Poma','El Iniesta','Pausa, lectura y pase entre líneas para darle sentido a cada ataque.'],
-        ['Jaime Henry Quea Ccama','Nuevo refuerzo','48 años · DNI 29734274.', true]
+        ['David Polar Poma','El Iniesta','Pausa, lectura y pase entre líneas para darle sentido a cada ataque.']
       ],
       album: 'assets/images/team-anin-album.png',
       albumLink: 'album-anin.html',
-      jersey: 'assets/images/team-anin-jersey.png',
-      albumAlt: 'Álbum de LOS VOLCÁNICOS',
-      jerseyAlt: 'Camiseta de LOS VOLCÁNICOS'
+      realPhoto: 'assets/images/campeonato-real/foto-03.webp',
+      realAlt: 'Fotografía real de Los Volcánicos de ANIN durante la Copa ANIN 2026',
+      albumAlt: 'Álbum previo de Los Volcánicos de ANIN'
     }
   };
 
-  const seedComments = [
-    { author: 'Afición local', team: 'LOS VOLCÁNICOS', message: 'Este equipo llega con mucha personalidad. ¡Los Volcánicos van a dar pelea!', createdAt: '2026-07-16T19:15:00-05:00' },
-    { author: 'Hincha CCI', team: 'CCI CLUB', message: 'Pedro Huaraca promete espectáculo. CCI CLUB se ve muy ordenado y competitivo.', createdAt: '2026-07-16T19:22:00-05:00' },
-    { author: 'Barra JYS', team: 'JYS EQUIPO PRIME', message: 'Abner Illatopa tiene que romperla. Ese álbum está de nivel mundial.', createdAt: '2026-07-16T19:34:00-05:00' },
-    { author: 'Tribuna Covacha', team: 'REAL COVACHA', message: 'Real Covacha tiene presencia y una camiseta imponente. ¡Vamos con todo!', createdAt: '2026-07-16T19:44:00-05:00' }
+  const galleryData = [
+    { src: 'assets/images/campeonato-real/foto-01.webp', category: 'cierre', caption: 'Fotografía conjunta de los equipos que disputaron los puestos de honor.' },
+    { src: 'assets/images/campeonato-real/foto-02.webp', category: 'cierre', caption: 'La confraternidad y el compañerismo marcaron el cierre de la Copa ANIN 2026.' },
+    { src: 'assets/images/campeonato-real/foto-03.webp', category: 'equipos', caption: 'Los Volcánicos de ANIN, representantes de ANIN.' },
+    { src: 'assets/images/campeonato-real/foto-04.webp', category: 'equipos', caption: 'Los Volcánicos de ANIN compartiendo la jornada deportiva.' },
+    { src: 'assets/images/campeonato-real/foto-05.webp', category: 'equipos', caption: 'Real Covacha, equipo participante de JYS.' },
+    { src: 'assets/images/campeonato-real/foto-06.webp', category: 'equipos', caption: 'Integrantes y acompañantes de Los Volcánicos de ANIN.' },
+    { src: 'assets/images/campeonato-real/foto-07.webp', category: 'equipos', caption: 'Fotografía institucional de Los Volcánicos de ANIN.' },
+    { src: 'assets/images/campeonato-real/foto-08.webp', category: 'equipos', caption: 'Una jornada de integración y amistad para el equipo ANIN.' },
+    { src: 'assets/images/campeonato-real/foto-09.webp', category: 'equipos', caption: 'JYS Equipo Prime, presente en la Copa ANIN 2026.' },
+    { src: 'assets/images/campeonato-real/foto-10.webp', category: 'equipos', caption: 'JYS Equipo Prime junto a colegas y acompañantes.' },
+    { src: 'assets/images/campeonato-real/foto-11.webp', category: 'equipos', caption: 'CCI Club, representante de la Supervisión.' },
+    { src: 'assets/images/campeonato-real/foto-12.webp', category: 'accion', caption: 'Los equipos se preparan para una nueva jugada.' },
+    { src: 'assets/images/campeonato-real/foto-13.webp', category: 'accion', caption: 'Disputa del balón cerca del área.' },
+    { src: 'assets/images/campeonato-real/foto-14.webp', category: 'accion', caption: 'Una acción intensa durante el campeonato.' },
+    { src: 'assets/images/campeonato-real/foto-15.webp', category: 'accion', caption: 'El juego limpio y la camaradería estuvieron presentes en cada encuentro.' },
+    { src: 'assets/images/campeonato-real/foto-16.webp', category: 'accion', caption: 'Circulación del balón y búsqueda de espacios.' },
+    { src: 'assets/images/campeonato-real/foto-17.webp', category: 'accion', caption: 'Los equipos atentos al desarrollo del partido.' },
+    { src: 'assets/images/campeonato-real/foto-18.webp', category: 'accion', caption: 'La intensidad del campeonato se vivió en cada sector de la cancha.' },
+    { src: 'assets/images/campeonato-real/foto-19.webp', category: 'accion', caption: 'Control y avance en una jugada ofensiva.' },
+    { src: 'assets/images/campeonato-real/foto-20.webp', category: 'accion', caption: 'Organización y compañerismo durante el encuentro.' },
+    { src: 'assets/images/campeonato-real/foto-21.webp', category: 'accion', caption: 'El balón vuelve a ponerse en movimiento.' },
+    { src: 'assets/images/campeonato-real/foto-22.webp', category: 'accion', caption: 'Partido disputado con entusiasmo y respeto.' },
+    { src: 'assets/images/campeonato-real/foto-23.webp', category: 'accion', caption: 'Transición ofensiva durante la jornada.' },
+    { src: 'assets/images/campeonato-real/foto-24.webp', category: 'accion', caption: 'Duelo por la posesión del balón.' },
+    { src: 'assets/images/campeonato-real/foto-25.webp', category: 'accion', caption: 'Acción colectiva frente al arco.' },
+    { src: 'assets/images/campeonato-real/foto-26.webp', category: 'accion', caption: 'Ataque y cobertura defensiva en la cancha Balón Fuego.' },
+    { src: 'assets/images/campeonato-real/foto-27.webp', category: 'accion', caption: 'Una jugada aérea durante el campeonato.' },
+    { src: 'assets/images/campeonato-real/foto-28.webp', category: 'accion', caption: 'Conducción del balón en el centro del campo.' },
+    { src: 'assets/images/campeonato-real/foto-29.webp', category: 'accion', caption: 'Los equipos mantuvieron la intensidad hasta el final.' },
+    { src: 'assets/images/campeonato-real/foto-30.webp', category: 'accion', caption: 'Últimos minutos de una jornada llena de entusiasmo.' },
+    { src: 'assets/images/campeonato-real/foto-31.webp', category: 'accion', caption: 'Una imagen final de la experiencia vivida en la Copa ANIN 2026.' }
   ];
 
-  function updateCountdown() {
-    const node = $('#countdown');
-    if (!node) return;
-    const eventDate = new Date('2026-07-17T20:00:00-05:00');
-    const distance = Math.max(0, eventDate.getTime() - Date.now());
-    const days = Math.floor(distance / 86400000);
-    const hours = Math.floor((distance % 86400000) / 3600000);
-    const minutes = Math.floor((distance % 3600000) / 60000);
-    const pad = (value) => String(value).padStart(2, '0');
-    node.innerHTML = `<b>${pad(days)}</b><em>D</em><b>${pad(hours)}</b><em>H</em><b>${pad(minutes)}</b><em>M</em>`;
+  const seedComments = [
+    { author: 'Organización Copa ANIN', team: 'COPA ANIN 2026', message: 'Gracias a los cuatro equipos por hacer posible una jornada de integración, compañerismo y sana competencia.', createdAt: '2026-07-18T09:00:00-05:00' },
+    { author: 'Afición ANIN', team: 'LOS VOLCÁNICOS DE ANIN', message: 'Una noche para recordar. Felicitaciones a todos por la participación y el espíritu deportivo.', createdAt: '2026-07-18T09:15:00-05:00' },
+    { author: 'Colegas de JYS', team: 'JYS EQUIPO PRIME', message: 'Excelente iniciativa. Gracias por promover la integración entre todos los equipos del proyecto.', createdAt: '2026-07-18T09:25:00-05:00' },
+    { author: 'Supervisión', team: 'CCI CLUB', message: 'Felicitaciones a todos los participantes. La confraternidad fue la verdadera ganadora.', createdAt: '2026-07-18T09:40:00-05:00' }
+  ];
+
+  let activeGalleryItems = [...galleryData];
+  let activePhotoIndex = 0;
+
+  function escapeHtml(text) {
+    return String(text)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
   }
 
   function updateHeader() {
@@ -176,7 +188,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
     items.forEach((item) => observer.observe(item));
   }
 
@@ -193,27 +205,93 @@
     $('#team-league').textContent = team.league;
     $('#team-title').textContent = team.name;
     $('#team-lead').textContent = team.lead;
-
-    $('#team-meta').innerHTML = team.meta.map((item) => `<span>${item}</span>`).join('');
-    $('#team-highlights').innerHTML = team.highlights.map((item) => `<li>${item}</li>`).join('');
-
-    const roster = $('#team-roster');
-    roster.innerHTML = team.roster.map(([name, nickname, narrative, isNew], index) => `
-      <article class="roster-card${isNew ? ' roster-card-new' : ''}">
+    $('#team-meta').innerHTML = team.meta.map((item) => `<span>${escapeHtml(item)}</span>`).join('');
+    $('#team-highlights').innerHTML = team.highlights.map((item) => `<li>${escapeHtml(item)}</li>`).join('');
+    $('#team-roster').innerHTML = team.roster.map(([name, nickname, narrative], index) => `
+      <article class="roster-card">
         <span>${String(index + 1).padStart(2, '0')}</span>
-        <div>${isNew ? '<em>NUEVO</em>' : ''}<strong>${escapeHtml(name)}</strong><b>“${escapeHtml(nickname)}”</b><small>${escapeHtml(narrative)}</small></div>
+        <div><strong>${escapeHtml(name)}</strong><b>“${escapeHtml(nickname)}”</b><small>${escapeHtml(narrative)}</small></div>
       </article>
     `).join('');
 
+    const realImage = $('#team-real-image');
     const albumImage = $('#team-album-image');
-    const jerseyImage = $('#team-jersey-image');
+    realImage.src = team.realPhoto;
+    realImage.alt = team.realAlt;
     albumImage.src = team.album;
     albumImage.alt = team.albumAlt;
-    jerseyImage.src = team.jersey;
-    jerseyImage.alt = team.jerseyAlt;
-
+    $('#team-real-link').href = team.realPhoto;
     $('#team-album-link').href = team.albumLink || team.album;
-    $('#team-jersey-link').href = team.jersey;
+  }
+
+  function renderGallery(filter = 'all') {
+    const gallery = $('#real-gallery');
+    if (!gallery) return;
+
+    activeGalleryItems = filter === 'all'
+      ? [...galleryData]
+      : galleryData.filter((item) => item.category === filter);
+
+    gallery.innerHTML = activeGalleryItems.map((item, index) => `
+      <button class="gallery-photo-card" type="button" data-gallery-index="${index}" aria-label="Abrir fotografía: ${escapeHtml(item.caption)}">
+        <img src="${item.src}" alt="${escapeHtml(item.caption)}" loading="lazy">
+        <span><b>${String(index + 1).padStart(2, '0')}</b>${escapeHtml(item.caption)}</span>
+      </button>
+    `).join('');
+  }
+
+  function openLightbox(index) {
+    const item = activeGalleryItems[index];
+    if (!item) return;
+    activePhotoIndex = index;
+    $('#lightbox-image').src = item.src;
+    $('#lightbox-image').alt = item.caption;
+    $('#lightbox-caption').textContent = item.caption;
+    const modal = $('#photo-lightbox');
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    $('.photo-lightbox-close').focus();
+  }
+
+  function closeLightbox() {
+    const modal = $('#photo-lightbox');
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+  }
+
+  function stepLightbox(direction) {
+    activePhotoIndex = (activePhotoIndex + direction + activeGalleryItems.length) % activeGalleryItems.length;
+    openLightbox(activePhotoIndex);
+  }
+
+  function setupGallery() {
+    renderGallery('all');
+
+    $$('.gallery-filter').forEach((button) => {
+      button.addEventListener('click', () => {
+        $$('.gallery-filter').forEach((item) => item.classList.toggle('is-active', item === button));
+        renderGallery(button.dataset.filter);
+      });
+    });
+
+    $('#real-gallery').addEventListener('click', (event) => {
+      const card = event.target.closest('[data-gallery-index]');
+      if (card) openLightbox(Number(card.dataset.galleryIndex));
+    });
+
+    $$('[data-close-lightbox]').forEach((item) => item.addEventListener('click', closeLightbox));
+    $('.photo-lightbox-prev').addEventListener('click', () => stepLightbox(-1));
+    $('.photo-lightbox-next').addEventListener('click', () => stepLightbox(1));
+
+    document.addEventListener('keydown', (event) => {
+      const modal = $('#photo-lightbox');
+      if (!modal.classList.contains('open')) return;
+      if (event.key === 'Escape') closeLightbox();
+      if (event.key === 'ArrowLeft') stepLightbox(-1);
+      if (event.key === 'ArrowRight') stepLightbox(1);
+    });
   }
 
   function getComments() {
@@ -229,13 +307,8 @@
   }
 
   function formatDate(value) {
-    const date = new Date(value);
-    return date.toLocaleString('es-PE', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+    return new Date(value).toLocaleString('es-PE', {
+      day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit'
     });
   }
 
@@ -243,29 +316,14 @@
     const list = $('#comments-list');
     const count = $('#comment-count');
     if (!list || !count) return;
-
     const comments = getComments().slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     count.textContent = `${comments.length} comentario${comments.length === 1 ? '' : 's'}`;
-
     list.innerHTML = comments.map((item) => `
       <article class="comment-card">
-        <div class="comment-card-head">
-          <strong>${escapeHtml(item.author)}</strong>
-          <span>${escapeHtml(item.team)}</span>
-        </div>
-        <p>${escapeHtml(item.message)}</p>
-        <small>${formatDate(item.createdAt)}</small>
+        <div class="comment-card-head"><strong>${escapeHtml(item.author)}</strong><span>${escapeHtml(item.team)}</span></div>
+        <p>${escapeHtml(item.message)}</p><small>${formatDate(item.createdAt)}</small>
       </article>
     `).join('');
-  }
-
-  function escapeHtml(text) {
-    return String(text)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
   }
 
   function setupCommentsForm() {
@@ -275,28 +333,23 @@
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-      message.classList.remove('show');
+      message.classList.remove('show', 'success');
       const author = form.author.value.trim();
       const team = form.team.value.trim();
       const comment = form.message.value.trim();
 
       if (author.length < 2 || !team || comment.length < 8) {
-        message.textContent = 'Completa tu nombre, el equipo y un comentario de al menos 8 caracteres.';
+        message.textContent = 'Completa tu nombre, la delegación y un mensaje de al menos 8 caracteres.';
         message.classList.add('show');
         return;
       }
 
       const comments = getComments();
-      comments.push({
-        author,
-        team,
-        message: comment,
-        createdAt: new Date().toISOString()
-      });
+      comments.push({ author, team, message: comment, createdAt: new Date().toISOString() });
       saveComments(comments);
       form.reset();
-      message.textContent = 'Tu comentario fue publicado correctamente.';
-      message.classList.add('show');
+      message.textContent = 'Tu mensaje fue publicado correctamente en este dispositivo.';
+      message.classList.add('show', 'success');
       renderComments();
     });
   }
@@ -304,38 +357,24 @@
   function setupMenu() {
     const toggle = $('.menu-toggle');
     if (!toggle) return;
-
     toggle.addEventListener('click', (event) => {
       const open = document.body.classList.toggle('menu-open');
       event.currentTarget.setAttribute('aria-expanded', String(open));
     });
-
     $$('.main-nav a').forEach((link) => link.addEventListener('click', () => {
       document.body.classList.remove('menu-open');
       toggle.setAttribute('aria-expanded', 'false');
     }));
   }
 
-  $$('.team-button').forEach((button) => {
-    button.addEventListener('click', () => activateTeam(button.dataset.team));
-    button.addEventListener('keydown', (event) => {
-      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-      event.preventDefault();
-      const buttons = $$('.team-button');
-      const current = buttons.indexOf(button);
-      const next = event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1 : (current + (event.key === 'ArrowRight' ? 1 : -1) + buttons.length) % buttons.length;
-      buttons[next].focus();
-      activateTeam(buttons[next].dataset.team);
-    });
-  });
-
-  updateCountdown();
-  setInterval(updateCountdown, 60000);
-  updateHeader();
+  $$('.team-button').forEach((button) => button.addEventListener('click', () => activateTeam(button.dataset.team)));
   window.addEventListener('scroll', updateHeader, { passive: true });
+
+  updateHeader();
   setupReveal();
   setupMenu();
   activateTeam('cci');
+  setupGallery();
   setupCommentsForm();
   renderComments();
 })();
